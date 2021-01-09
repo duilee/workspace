@@ -1,0 +1,39 @@
+﻿Build started 2020-12-10 오후 1:45:07.
+     1>Project "C:\Users\DooDoo\Documents\Visual Studio 2013\Projects\11_AddressBook_Cpp_2\11_AddressBook_Cpp\11_AddressBook_Cpp.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\11_AddressBook_Cpp.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt 11_AddressBook_Cpp.cpp MyList.cpp MyNode.cpp UserData.cpp UserInterface.cpp
+         UserInterface.cpp
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(32): error C2660: 'CMyList::AddNewNode' : function does not take 2 arguments
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(38): error C2065: 'CUserData' : undeclared identifier
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(38): error C2065: 'pNode' : undeclared identifier
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(44): error C2065: 'pNode' : undeclared identifier
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(45): error C2065: 'pNode' : undeclared identifier
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(46): error C2065: 'pNode' : undeclared identifier
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(46): error C2227: left of '->GetName' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(46): error C2227: left of '->GetPhone' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\userinterface.cpp(46): error C2227: left of '->GetNext' must point to class/struct/union/generic type
+                 type is 'unknown-type'
+         UserData.cpp
+         MyList.cpp
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mylist.cpp(57): error C2039: 'GetKey' : is not a member of 'CMyNode'
+                 c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mynode.h(4) : see declaration of 'CMyNode'
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mylist.cpp(72): error C2039: 'GetKey' : is not a member of 'CMyNode'
+                 c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mynode.h(4) : see declaration of 'CMyNode'
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mylist.cpp(95): error C2039: 'GetKey' : is not a member of 'CMyNode'
+                 c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mynode.h(4) : see declaration of 'CMyNode'
+         11_AddressBook_Cpp.cpp
+     1>c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\11_addressbook_cpp.cpp(12): error C2259: 'CUserData' : cannot instantiate abstract class
+                 due to following members:
+                 'const char *CMyNode::GeyKey(void)' : is abstract
+                 c:\users\doodoo\documents\visual studio 2013\projects\11_addressbook_cpp_2\11_addressbook_cpp\mynode.h(13) : see declaration of 'CMyNode::GeyKey'
+         Generating Code...
+         Compiling...
+         MyNode.cpp
+         Generating Code...
+     1>Done Building Project "C:\Users\DooDoo\Documents\Visual Studio 2013\Projects\11_AddressBook_Cpp_2\11_AddressBook_Cpp\11_AddressBook_Cpp.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.48

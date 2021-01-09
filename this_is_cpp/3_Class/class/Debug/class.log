@@ -1,0 +1,14 @@
+﻿Build started 2020-11-30 오후 3:38:22.
+     1>Project "C:\Users\DooDoo\Documents\Visual Studio 2013\Projects\class\class\class.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\class.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt mutable_delete.cpp StaticInClass.cpp
+         StaticInClass.cpp
+         mutable_delete.cpp
+     1>c:\users\doodoo\documents\visual studio 2013\projects\class\class\mutable_delete.cpp(37): error C2280: 'void CMyData::SetData(double)' : attempting to reference a deleted function
+                 c:\users\doodoo\documents\visual studio 2013\projects\class\class\mutable_delete.cpp(17) : see declaration of 'CMyData::SetData'
+         Generating Code...
+     1>Done Building Project "C:\Users\DooDoo\Documents\Visual Studio 2013\Projects\class\class\class.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.61

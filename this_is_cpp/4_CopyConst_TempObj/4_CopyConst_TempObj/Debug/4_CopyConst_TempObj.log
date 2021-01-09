@@ -1,0 +1,15 @@
+﻿Build started 2020-12-01 오후 12:56:17.
+     1>Project "c:\Users\DooDoo\documents\visual studio 2013\Projects\4_CopyConst_TempObj\4_CopyConst_TempObj\4_CopyConst_TempObj.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\4_CopyConst_TempObj.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt deep_shallow_copy.cpp
+         deep_shallow_copy.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\doodoo\documents\visual studio 2013\Projects\4_CopyConst_TempObj\Debug\4_CopyConst_TempObj.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\doodoo\documents\visual studio 2013\Projects\4_CopyConst_TempObj\Debug\4_CopyConst_TempObj.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\doodoo\documents\visual studio 2013\Projects\4_CopyConst_TempObj\Debug\4_CopyConst_TempObj.lib" /MACHINE:X86 Debug\4_CopyConst_TempObj.obj
+         Debug\deep_shallow_copy.obj
+         Debug\stdafx.obj
+         4_CopyConst_TempObj.vcxproj -> c:\users\doodoo\documents\visual studio 2013\Projects\4_CopyConst_TempObj\Debug\4_CopyConst_TempObj.exe
+     1>Done Building Project "c:\Users\DooDoo\documents\visual studio 2013\Projects\4_CopyConst_TempObj\4_CopyConst_TempObj\4_CopyConst_TempObj.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.52
