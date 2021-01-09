@@ -60,7 +60,8 @@ For contact,
 - 'This is C++' by Hosung Choi. [(Materials Covered)](./this_is_cpp)
 
 ### :factory: Data Structure and Algorithms
-- Intro To Data Structures and Algorithms by Udacity/Google ([Materials Covered]())
+- Intro To Data Structures and Algorithms by Udacity/Google ([Materials Covered](./Algorithms/Data_Structure_and_Algorithms.ipynb
+))
 - Algorithm practices covering Data Structure, DFS/BFS, Brute Force, Dynamic Programming, Mathematics with C++ from various sources([Materials Covered](./Algorithms))
 
 ### :pushpin: SQL from A to Z 
