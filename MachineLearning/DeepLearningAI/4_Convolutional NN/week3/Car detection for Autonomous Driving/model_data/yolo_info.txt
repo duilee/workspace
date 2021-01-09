@@ -1,0 +1,3 @@
+Omitted Yolo.h5 file can be found below
+
+https://github.com/kotestyle/deep-learning-coursera

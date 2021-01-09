@@ -1,0 +1,3 @@
+X_dev.npy can be downloaded from
+
+https://github.com/amanchadha/coursera-deep-learning-specialization/blob/master/C5%20-%20Sequence%20Models/Week%203/Trigger%20word%20detection/XY_dev/X_dev.npy.zip
