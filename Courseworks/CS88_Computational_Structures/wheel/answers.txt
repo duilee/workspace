@@ -1,0 +1,14 @@
+1. In SecretWord, you want the secret word to be private. How do you name object attributes to indicate that it is private?
+	- you can add underscore( '_' ) at the beginning of the name of secret work you are defining undert _init_.  
+2. What data structures could be used to hold the word set? What would make one choice better than another?
+	- List, dictionary, tuple could be possible. Whether one choice would be better than the other will depend on the operations we will be implementing on the list. 
+3. Why is it important that WordSet.words return a sorted list of words in the word set, when all we use it for is to test if a word is in the WordSet?
+	- Having the wordset into a ordered list would make the easier for the user to locate the word that he/she is in search for. So it gives more conveniecne indexing. 
+4. How does Dictionary invoke the initializer for its superclass?
+	- It uses Wordset.__init__(self, text)
+5. Do Players ever access the SecretWord object? What does Board reveal about the secret word?
+	- Players do not get the access to the SecretWord. Board shows the guesses of the player, and if the player's guess is in the secret word, board will show that letter in the corresponding position of secretword
+6. How will object methods of subclasses of Player access the all_words class attribute?
+	- all_words under player can be accessed by using Player.all_words
+7. Why does the Player base class define methods that don't do anything?
+	- The methods defined in Played base class provides an interface that is used by all types of players. 

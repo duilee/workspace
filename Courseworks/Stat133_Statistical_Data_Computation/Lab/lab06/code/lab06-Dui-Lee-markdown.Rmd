@@ -1,0 +1,57 @@
+---
+title: "lab06-Dui-Lee"
+author: "Dui"
+date: "2018³â 10¿ù 3ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Manipulating and Visualizing Data Frames
+These are the bash commands used for this lab. 
+
+```{bash, eval=FALSE}
+# Open a shell terminal (e.g. command line or GitBash)
+# Change your working directory to a location where you will store all the materials for this lab
+$ cd desktop/stat133
+
+# Use mkdir to create a directory lab06
+$ mkdir lab06
+
+# cd to lab06
+$ cd lab06
+
+# Use mkdir to create other subdirectories: data, code, output, images
+$ mkdir data code output images
+
+# List the contents of lab06 to confirm that you have all the subdirectories
+$ ls
+
+# Use touch to create an empty README.md text file.
+$ touch README.md
+
+# Open the README.md file with a text editor (e.g. the one in RStudio) and add a brief description of what this lab is about. Save the changes.
+$ nano README.md
+
+# cd to data/
+$ cd data
+
+# Download the data file with the command curl, and the -O option (letter O)
+$ curl -O https://raw.githubusercontent.com/ucb-stat133/stat133-fall-2018/master/data/nba2018-players.csv
+
+# Use ls to confirm that the csv file is in data/
+$ ls
+
+# Use word count wc to count the lines of the csv file
+$ wc nba2018-players.csv
+
+# Take a peek at the first rows of the csv file with head
+$ head nba2018-players.csv -n 5
+
+# Take a peek at the last 5 rows of the csv file with tail
+$ tail nba2018-players.csv -n 5
+
+```
+

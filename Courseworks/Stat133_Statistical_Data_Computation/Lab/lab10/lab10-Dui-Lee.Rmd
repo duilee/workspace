@@ -1,0 +1,260 @@
+---
+title: "lab10-Dui-Lee"
+author: "Dui"
+date: "2018³â 10¿ù 31ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# you may need to install the packages
+# install.packages("stringr")
+# install.packages("plotly")
+library(dplyr)
+library(stringr)
+library(plotly)
+```
+
+##Mobile Food Schedule Data
+
+```{r}
+dat <- read.csv('mobile-food-sf.csv', stringsAsFactors = FALSE)
+```
+
+##Plots with Plotly
+
+```{r}
+day_freqs <- table(dat$DayOfWeekStr)
+
+barplot(day_freqs, border = NA, las = 3)
+```
+
+```{r}
+plot_ly(x = names(day_freqs), 
+        y = day_freqs,
+        type = 'bar')
+```
+
+```{r}
+# day frequencies table
+day_counts <- dat %>% 
+  select(DayOfWeekStr) %>%
+  group_by(DayOfWeekStr) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+
+day_counts
+```
+
+```{r}
+plot_ly(day_counts, 
+        x = ~DayOfWeekStr, 
+        y = ~count,
+        type = 'bar')
+```
+
+```{r}
+plot_ly(day_counts, 
+        x = ~reorder(DayOfWeekStr, count), 
+        y = ~count,
+        type = 'bar')
+```
+
+##Changing Times
+
+```{r}
+# toy string
+time1 <- '10AM'
+
+# hour
+str_sub(time1, start = 1, end = 2)
+
+# period
+str_sub(time1, start = 3, end = 4)
+```
+
+```{r}
+times <- c('12PM', '10AM', '9AM', '8AM', '2PM')
+
+# subset time
+str_sub(times, start = 0, end = -3)
+
+# subset period
+str_sub(times, start = -2)
+```
+
+
+```{r}
+hours <- as.numeric(str_sub(times, start = 0, end = -3))
+hours 
+
+periods <- str_sub(times, start = -2)
+periods
+```
+
+```{r}
+freq <- table(periods)
+freq
+
+plot_ly(x = names(freq), 
+        y = freq,
+        type = 'bar')
+```
+
+```{r}
+times <- c('12PM', '10AM', '9AM', '8AM', '12AM')
+
+start24 <- function(x) {
+  y <- rep(0, length(x))
+  hours <- as.numeric(str_sub(x, start = 0, end = -3))
+  period <- str_sub(x, start = -2)
+  for (i in 1:length(x)) {
+    if (period[i] == "PM") {
+      if (hours[i] == 12) {
+        y[i] = 12
+      }
+      else {
+        y[i] = hours[i] + 12
+      }
+    }
+    else {
+      if (hours[i] == 12) {
+        y[i] = 24
+      }
+      else {
+        y[i] = hours[i]
+      }
+    }
+  }
+  return(y)
+}
+  
+
+start24(times)
+```
+
+```{r}
+dat <- dat %>% mutate('start' = start24(starttime), 'end' = start24(endtime))
+
+dat <- dat %>% mutate('duration' = end - start)
+
+```
+
+##Latitude and Longitude Coordinates
+
+```{r}
+loc1 <- "(37.7651967350509,-122.416451692902)"
+
+# "remove" opening parenthesis 
+str_replace(loc1, pattern = '\\(', replacement = '')
+
+# "remove" closing parenthesis
+str_replace(loc1, pattern = '\\)', replacement = '')
+```
+
+```{r}
+loc_all <- dat$Location
+
+loc2 <- str_replace_all(loc_all, pattern = '\\(|\\)', replacement = '')
+
+lat_lon <- str_split(loc2, pattern = ',')
+
+lat <- lapply(lat_lon, function(x) x[1])
+
+lon <- lapply(lat_lon, function(x) x[2])
+
+lat1 <- as.numeric(unlist(lat))
+lon <- as.numeric(unlist(lon))
+
+```
+
+```{r}
+dat <- dat %>% mutate('lat' = lat1, 'lon' = lon)
+```
+
+##Plotting locations on a map
+
+```{r}
+plot(dat$lon, dat$lat, pch = 19, col = "#77777744")
+```
+
+```{r}
+plot_ly(x = dat$lon, y = dat$lat)
+```
+
+```{r}
+plot_ly(data = dat, x = ~lon, y = ~lat, type = 'scatter', mode = 'markers')
+```
+
+##Maps with "RgoogleMaps"
+
+```{r}
+library(RgoogleMaps)
+```
+
+```{r}
+# coordinates for center of the map
+center <- c(mean(dat$lat, na.rm = TRUE), mean(dat$lon, na.rm = TRUE))
+
+# zoom value
+zoom <- min(MaxZoom(range(dat$lat, na.rm = TRUE), 
+                    range(dat$lon, na.rm = TRUE)))
+
+# san francisco map
+map1 <- GetMap(center=center, zoom=zoom, destfile = "san-francisco.png")
+```
+
+```{r}
+PlotOnStaticMap(map1, dat$lat, dat$lon, col = "#ed4964", pch=20)
+```
+
+##Maps with "ggmap"
+
+```{r}
+library(ggmap)
+```
+```{r}
+
+# let's get rid of rows with missing values
+dat <- na.omit(dat)
+
+# ggmap typically asks you for a zoom level, 
+# but we can try using ggmap's make_bbox function:
+sbbox <- make_bbox(lon = dat$lon, lat = dat$lat, f = .1)
+sbbox
+
+# get a 'terrain' map
+sf_map <- get_map(location = sbbox, maptype = "terrain", source = "google")
+
+ggmap(sf_map) + 
+  geom_point(data = dat, 
+             mapping = aes(x = lon, y = lat), 
+             color = "red", alpha = 0.2, size = 1)
+```
+
+##Let's look for specific types of food
+
+
+```{r}
+foods <- dat$optionaltext
+```
+
+```{r}
+foods <- str_replace(foods, "Burritos", "burritos") 
+```
+
+```{r}
+d <- str_detect(foods, "burritos")
+```
+
+```{r}
+newdat <- dat[d, ]
+
+PlotOnStaticMap(map1, newdat$lat, newdat$lon, col = "#ed4964", pch=20)
+```
+
+
+

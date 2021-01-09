@@ -1,0 +1,179 @@
+---
+title: "Lab12-Dui-Lee"
+author: "Dui"
+date: "2018³â 11¿ù 14ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(XML)
+library(xml2)
+library(rvest)
+library(magrittr)
+```
+
+```{r}
+# Assemble url (so it fits on screen)
+basket <- "https://www.basketball-reference.com"
+gsw <- "/teams/GSW/2017.html"
+gsw_url <- paste0(basket, gsw)
+
+# download HTML file to your working directory
+download.file(gsw_url, 'gsw-roster-2017.html')
+
+# Read GSW Roster html table
+gsw_roster <- readHTMLTable('gsw-roster-2017.html')
+```
+
+```{r}
+gsw_roster
+```
+
+```{r}
+# Assemble url (so it fits on screen)
+basket <- "https://www.basketball-reference.com"
+bos <- "/teams/BOS/2017.html"
+bos_url <- paste0(basket, bos)
+
+# download HTML file to your working directory
+download.file(bos_url, 'bos-roster-2017.html')
+
+# Read BOS Roster html table
+bos_roster <- readHTMLTable('bos-roster-2017.html')
+
+bos_roster
+```
+
+##2016-17 NBA Season Summary
+
+```{r}
+nba_html <- paste0(basket, "/leagues/NBA_2017.html")
+
+xml_doc <- read_html(nba_html)
+
+xml_doc
+```
+
+```{r}
+xml_text <- xml_doc %>% html_text()
+
+```
+
+```{r}
+# content of h2 nodes
+xml_doc %>%
+  html_nodes("h2") %>%
+  html_text() 
+```
+
+###Use html_nodes() and html_text() to extract the values of nodes:
+
+- "h1"
+- "strong"
+- "button"
+
+```{r}
+xml_doc %>%
+  html_nodes("h1") %>%
+  html_text()
+```
+
+```{r}
+xml_doc %>%
+  html_nodes("strong") %>%
+  html_text()
+```
+
+```{r}
+xml_doc %>%
+  html_nodes("button") %>%
+  html_text()
+```
+
+```{r}
+# node with an attribute
+xml_doc %>%
+  html_nodes("p.listhead") %>%
+  html_text()
+```
+
+##Extracting href attributes
+
+```{r}
+# extracting first table 
+xml_table1 <- xml_doc %>%
+  html_nodes("table") %>%
+  extract(1)
+
+class(xml_table1)
+```
+```{r}
+xml_tables <- xml_doc %>%
+  html_nodes("table") %>%
+  extract(1:2)
+
+xml_tables %>% 
+  html_nodes("a") %>%
+  html_attr("href")
+```
+
+###Your Turn
+
+- Store the href attributes in a character vector hrefs.
+- Use string manipulation functions to create a character vector teams that contains just the team abbreviations: e.g. "BOS", "CLE", "TOR", ...
+- Create a character vector files with elements: "BOS-roster-2017.csv", "CLE-roster-2017.csv", "TOR-roster-2017.csv", ...
+- Use the object basket and the first element of hrefs (i.e. hrefs[1]) to assemble a team_url like the one used for gsw_url:
+
+```{r}
+library(stringr)
+
+hrefs <- xml_tables %>% 
+  html_nodes("a") %>%
+  html_attr("href")
+
+teams <- str_sub(hrefs, 8, 10)
+
+files <- paste0(teams, "-roster-2017.csv")
+
+team_url <- paste0(basket, hrefs[1])
+```
+
+- Read the html document of team_url.
+- Use html_table() to extract the content of the html table as a data frame called roster.
+
+```{r}
+xml_doc2 <- read_html(team_url)
+
+
+xml_table <- xml_doc2 %>%
+  html_nodes("table") %>%
+  extract(1)
+
+roster <- html_table(xml_table)[[1]]
+
+roster
+```
+- Store the data frame in a csv file: "BOS-roster-2017.csv".
+```{r}
+write.csv(roster, files[1])
+```
+
+- Create a for () loop to extract a handful of the roster tables as data frames.
+Store each table in its own csv file: e.g. "GSW-roster-2017.csv"
+```{r}
+for (i in 1:5) {
+  team_url <- paste0(basket, hrefs[i])
+  xml_doc2 <- read_html(team_url)
+  xml_table <- xml_doc2 %>%
+    html_nodes("table") %>%
+    extract(1)
+  roster <- html_table(xml_table)[[1]]
+  write.csv(roster, files[i])
+
+}
+```
+

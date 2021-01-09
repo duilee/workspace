@@ -1,0 +1,17 @@
+player,team,position,height,weight,age,experience,college,salary,games,minutes,points,points3,points2,points1
+David West,GSW,C,81,250,36,13,Xavier University,1551659,68,854,316,3,132,43
+Matt Barnes,GSW,SF,79,226,36,13,"University of California, Los Angeles",383351,20,410,114,18,20,20
+Zaza Pachulia,GSW,C,83,270,32,13,NA,2898e3,70,1268,426,0,164,98
+Anderson Varejao,GSW,C,82,273,34,12,NA,1551659,14,92,18,0,5,8
+Andre Iguodala,GSW,SF,78,215,33,12,University of Arizona,11131368,76,1998,574,64,155,72
+Shaun Livingston,GSW,PG,79,192,31,11,NA,5782450,76,1345,389,1,172,42
+Kevin Durant,GSW,PF,81,240,28,9,University of Texas at Austin,26540100,62,2070,1555,117,434,336
+JaVale McGee,GSW,C,84,270,29,8,"University of Nevada, Reno",1403611,77,739,472,0,208,56
+Stephen Curry,GSW,PG,75,190,28,7,Davidson College,12112359,79,2638,1999,324,351,325
+Klay Thompson,GSW,SG,79,215,26,5,Washington State University,16663575,78,2649,1742,268,376,186
+Draymond Green,GSW,PF,79,230,26,4,Michigan State University,15330435,76,2471,776,81,191,151
+Ian Clark,GSW,SG,75,175,25,3,Belmont University,1015696,77,1137,527,61,150,44
+James Michael McAdoo,GSW,PF,81,230,24,2,University of North Carolina,980431,52,457,147,2,60,21
+Kevon Looney,GSW,C,81,220,20,1,"University of California, Los Angeles",1182840,53,447,135,2,54,21
+Damian Jones,GSW,C,84,245,21,0,Vanderbilt University,1171560,10,85,19,0,8,3
+Patrick McCaw,GSW,SG,79,185,21,0,"University of Nevada, Las Vegas",543471,71,1074,282,41,65,29

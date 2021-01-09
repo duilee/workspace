@@ -1,0 +1,7 @@
+"0","library(roller)"
+"0","# default device"
+"0","device1 <- device()"
+"0","device1"
+"1","object ""device""
+
+"

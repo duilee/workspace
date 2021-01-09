@@ -1,0 +1,249 @@
+---
+title: "Warmup06-Dui-Lee"
+author: "Dui"
+date: "2018³â 10¿ù 20ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+##Binomial Probability Functions
+
+###Function is_integer()
+
+```{r}
+#' @title is_integer
+#' @description determine if the input is an integer
+#' @param x some number
+#' @return boolean expression
+is_integer <- function(x) {
+  if (x %% 1 == 0)
+    return(TRUE)
+  else
+    return(FALSE)
+}
+
+# TRUE's
+is_integer(-1)
+is_integer(0)
+is_integer(2L)
+is_integer(2)
+# FALSE's
+is_integer(2.1)
+is_integer(pi)
+is_integer(0.01)
+
+```
+
+###Function is_positive()
+
+```{r}
+#' @title is_positive
+#' @description determine if the input is a positive number
+#' @param x single number
+#' @return boolean expression
+is_positive <- function(x) {
+  if (x > 0)
+    return(TRUE)
+  else
+    return(FALSE)
+}
+
+# TRUE's
+is_positive(0.01)
+is_positive(2)
+# FALSE's
+is_positive(-2)
+is_positive(0)
+
+```
+
+###Function is_nonnegative()
+```{r}
+#' @title is_nonnegative
+#' @description determine if the input is a nonnegative numer
+#' @param x single number
+#' @return boolean expression
+is_nonnegative <- function(x) {
+  if (x >= 0)
+    return(TRUE)
+  else
+    return(FALSE)
+}
+
+# TRUE's
+is_nonnegative(0)
+is_nonnegative(2)
+# FALSE's
+is_nonnegative(-0.00001)
+is_nonnegative(-2)
+
+```
+
+###Function is_positive_integer()
+```{r}
+#' @title is_positive_integer
+#' @description determine if the input is a positive integer
+#' @param x single number
+#' @return boolean expression
+is_positive_integer <- function(x) {
+  if (is_positive(x) & is_integer(x))
+    return(TRUE)
+  else
+    return(FALSE)
+}
+
+# TRUE
+is_positive_integer(2)
+is_positive_integer(2L)
+# FALSE
+is_positive_integer(0)
+is_positive_integer(-2)
+
+```
+
+###Function is_nonneg_integer()
+```{r}
+#' @title is_nonneg_integer()
+#' @description determine if the input is a nonnegative integer
+#' @param x single number
+#' @return boolean expression
+is_nonneg_integer <- function(x) {
+  if (is_nonnegative(x) & is_integer(x))
+    return(TRUE)
+  else
+    return(FALSE)
+}
+
+# TRUE's
+is_nonneg_integer(0)
+is_nonneg_integer(1)
+# FALSE
+is_nonneg_integer(-1)
+is_nonneg_integer(-2.5)
+
+```
+
+###Function is_probability()
+
+```{r}
+#' @title is_probabilty()
+#' @description determine if the input is a probabilty, that is, between 0 and 1. 
+#' @param x single number
+#' @return boolean expression
+is_probability <- function(x) {
+  if (x >= 0 & x <= 1)
+    return(TRUE)
+  else
+    return(FALSE)
+}
+
+# TRUE's
+is_probability(0)
+is_probability(0.5)
+is_probability(1)
+# FALSE's
+is_probability(-1)
+is_probability(1.0000001)
+
+```
+
+###Function bin_factorial()
+```{r}
+#' @title bin_factorial()
+#' @description returns factorial of the input number
+#' @param x single number
+#' @return factorial of x
+bin_factorial <- function(x) {
+  fac = 1
+  if (x == 0)
+    return(1)
+  else
+    for (i in 1:x)
+      fac = fac * i
+    return(fac)
+}
+
+bin_factorial(5)
+bin_factorial(0)
+
+```
+
+###Function bin_combinations()
+```{r}
+#' @title bin_combinations()
+#' @description returns number of combinations in which K successes can occur in n trials.
+#' @param n number of all trials
+#' @param k number of successes
+#' @return number of combinations 
+bin_combinations <- function(n , k) {
+  return(bin_factorial(n) / (bin_factorial(k) * bin_factorial(n - k)))
+}
+
+bin_combinations(n = 5, k = 2)
+bin_combinations(10, 3)
+bin_combinations(4, 4)
+
+```
+
+###Function bin_probability()
+```{r}
+#' @title bin_probability()
+#' @description returns the probabilty to getting k successes in n trials with given probability to success.
+#' @param trials number of trials
+#' @param success number of successes
+#' @param prob probability of success
+#' @return probaility of getting k successes in n trials
+bin_probability <- function(trials, success, prob) {
+  if (!is_nonneg_integer(trials))
+    stop("invalid trials value")
+  if (!is_nonneg_integer(success))
+    stop("invalid success value")
+  if (!is_probability(prob))
+    stop("invalid prob value")
+  if (success > trials)
+    stop("number of successes must not exceed number of trials")
+  return(bin_combinations(n = trials, k = success) * prob^(success) * (1-prob)^(trials-success))
+}
+
+# probability of getting 2 successes in 5 trials
+# (assuming prob of success = 0.5)
+bin_probability(trials = 5, success = 2, prob = 0.5)
+# bad trials
+bin_probability(trials = 0, success = 2, prob = 0.5)
+# bad success
+bin_probability(trials = 5, success = 2.5, prob = 0.5)
+# success > trials
+bin_probability(trials = 5, success = 6, prob = 0.5)
+# bad prob
+bin_probability(trials = 5, success = 2, prob = -0.5)
+# 55 heads in 100 tosses of a loaded coin with 45% chance of heads
+bin_probability(trials = 100, success = 55, prob = 0.45)
+
+```
+
+###Function bin_distribution()
+```{r}
+#' @title bin_distribution()
+#' @description returns distribution of the probabilty to getting k successes in n trials with given probability to success where k is all the number less than or equal to n. 
+#' @param trials number of trials
+#' @param prob probability of success
+#' @return distribution of the probailities of getting k successes in n trials where k <= n
+
+bin_distribution <- function(trials, prob) {
+  success = c(0:trials)
+  probability = rep(0, length(success))
+  for (i in success) {
+    probability[(i+1)] = bin_probability(trials, i, prob)
+  }
+  df = data.frame(success, probability)
+  return(df)
+}
+
+# binomial probability distribution
+bin_distribution(trials = 5, prob = 0.5)
+
+```
+

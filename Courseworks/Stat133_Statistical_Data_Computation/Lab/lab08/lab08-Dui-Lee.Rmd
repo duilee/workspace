@@ -1,0 +1,351 @@
+---
+title: "lab08-Dui-Lee"
+author: "Dui"
+date: "2018³â 10¿ù 17ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+##Lab 8: Simple Loops
+
+###For loops
+
+```{r}
+#rewrite the for loop in order to triple every element in vec, and printing the output at each step of the loop
+vec <- c(4,5,7)
+
+for (j in 1:3) {
+  print(vec[j] * 3)
+}
+
+
+```
+
+```{r}
+#What if you want to create a vector vec2, in which you store the values produced at each iteration of the loop?
+vec <- c(4,5,7)
+vec2 <- rep(0, length(vec))
+
+for (i in 1:3) {
+  vec2[i] = vec[i] * 3
+}
+vec2
+
+
+```
+
+###Summartion Series
+
+```{r}
+sum1 = 0
+n = 1000000
+for (i in 0:n) {
+  sum1 = sum1 + (1/(2^i))
+}
+sum1
+
+#the series converges to 2
+```
+
+```{r}
+sum2 = 0
+n = 100000
+for (i in 0:n) {
+  sum2 = sum2 + (1/(9^i))
+}
+sum2
+
+#the series converges to 1.125
+```
+
+###Arithmetic Series
+
+```{r}
+n = 100
+seq1 = rep(0, n)
+
+for (i in 1:n) {
+  seq1[i] = 3 + (i-1) * 3
+}
+
+seq1
+
+#the series does not converge as n increase, it reaches infinity
+```
+
+####Geometric sequence
+
+```{r}
+#Write a for loop to compute the sum of the first (n) term
+n = 100
+seq2 = rep(0, n)
+
+for (i in 1:n) {
+  if (i > 1) {
+    seq2[i] = seq2[i-1] + 3 * 2^(i-1)
+  }
+  else {seq2[i] = 3 * 2^(i-1)}
+}
+
+seq2
+
+#the series does not converge as n increase, it reaches infinity
+```
+
+###Sine Approximation
+
+```{r}
+x = 5
+n = 50
+sum3  = 0
+for (j in 1:n) {
+  sum3 = sum3 +(-1)^(j-1)*x^(2*j-1)/(factorial(2*j-1))
+}
+
+sum3
+sin(5)
+```
+
+###For loop with a matrix
+
+```{r}
+#get a matrix Y such that the negative numbers in A are transformed into squared values, while the positive numbers in A are transformed into square root values
+
+set.seed(123)
+X <- matrix(rnorm(12), nrow = 4, ncol = 3)
+X
+
+Y <- matrix(NA, nrow = 4, ncol = 3)
+
+for (i in 1:nrow(X)) {
+  for (j in 1:ncol(X)) {
+    if (X[i,j] > 0) {
+      Y[i,j] <- (X[i,j])^(1/2)
+    }
+    else {
+      Y[i,j] <- (X[i,j])^2
+    }
+  }
+}
+
+Y
+```
+
+###Dividing a number by 2 multiple times
+
+####Make a reduce() function
+
+```{r}
+# your reduce() function
+reduce <- function(x) {
+  repeat {
+    print(x)
+    if (x %% 2 == 1) {
+      break                  
+    }
+    x <- x / 2 
+  }
+  
+}
+
+reduce(898128000)
+```
+
+###Average
+
+```{r}
+#Write R code, using each type of loop (e.g. for, while, repeat) to implement the arithmetic mean of the vector x = 1:100
+
+##for loop
+x = c(1:100)
+sum4 = 0
+
+for (i in x) {
+  sum4 = sum4 + i/length(x)
+}
+
+sum4
+mean(x)
+
+##while loop
+sum5 = 0
+i = 0
+while (i < length(x)) {
+  sum5 = sum5 + x[i + 1]/length(x)
+  i = i + 1
+}
+
+sum5
+mean(x)
+```
+
+```{r}
+
+##repeat loop
+sum6 = 0
+i = 0
+repeat {
+  if (i == length(x)) {
+    break
+  }
+  sum6 = sum6 + x[i+1]/length(x)
+  i = i + 1
+}
+
+sum6
+mean(x)
+```
+
+###Standard Deviation
+```{r}
+x = c(1:100)
+x1 = mean(x)
+
+#for loop
+sum7 = 0
+
+for (i in x) {
+  sum7 = sum7 + (i - x1)^2/(length(x)-1)
+}
+
+sum7^(1/2)
+sd(x)
+
+#while loop
+sum8 = 0
+i = 0
+while (i < length(x)) {
+  sum8 = sum8 + (x[i+1] - x1)^2/(length(x)-1)
+  i = i+1
+}
+sum8^(1/2)
+
+#repeat loop
+sum9 = 0
+i = 0
+repeat{
+  if (i == length(x)) {
+    break
+  }
+  sum9 = sum9 + (x[i+1] - x1)^2/(length(x)-1)
+  i = i +1
+}
+```
+
+###Geometrix Mean
+
+```{r}
+x <- c(1:50)
+
+#for loop
+mean1 = 1
+for (i in x) {
+  mean1 = mean1 * i^(1/length(x))
+}
+mean1
+
+#while loop
+mean2 = 1
+i = 0
+while (i < length(x)) {
+  mean2 = mean2 * x[i+1]^(1/length(x))
+  i = i+1
+}
+mean2
+
+#repeat loop
+mean3 = 1
+i = 0
+repeat{
+  if (i == length(x)) {
+    break
+  }
+  mean3 = mean3 * x[i+1]^(1/length(x))
+  i = i+1
+}
+mean3
+```
+
+###Distance Matrix of Letters
+
+```{r}
+# random distance matrix
+num_letters <- length(LETTERS)
+set.seed(123)
+values <- sample.int(num_letters) 
+distances <- values %*% t(values)
+diag(distances) <- 0
+dimnames(distances) <- list(LETTERS, LETTERS)
+
+distances[1:5, 1:5]
+```
+
+```{r}
+get_dist <- function(distances, ltrs) {
+  for (i in ltrs) {
+    if (sum(i == LETTERS) == 0) {
+      stop("Unrecognized character")
+    }
+  }
+  dist = 0
+  for (j in 1:(length(ltrs)-1)) {
+    dist = dist + distances[ltrs[j],ltrs[j+1]]
+  }
+  return(dist)
+}
+
+vec <- c('E', 'D', 'A')
+get_dist(distances, vec)
+
+err <- c('E', 'D', ')')
+get_dist(distances, err)
+```
+
+```{r}
+cal <- c('C', 'A', 'L')
+stats <- c('S', 'T', 'A', 'T', 'S')
+oski <- c('O', 'S', 'K', 'I')
+zzz <- rep('Z', 3)
+lets <- LETTERS
+
+get_dist(distances, cal)
+get_dist(distances, stats)
+get_dist(distances, oski)
+get_dist(distances, zzz)
+get_dist(distances, lets)
+```
+
+```{r}
+first <- c("D", "U", "I")
+get_dist(distances, first)
+
+last <- c("L", "E", "E")
+get_dist(distances, last)
+```
+
+```{r}
+strings <- list(
+  cal = cal,
+  stats = stats,
+  oski = oski,
+  zzz = zzz,
+  lets = lets,
+  first = first,
+  last = last
+)
+
+strings_dists = strings
+
+for (i in 1:length(strings)) {
+  strings_dists[i] = get_dist(distances, strings[[i]])
+}
+
+strings_dists
+strings
+
+#strings_dists looks like a list
+```
+

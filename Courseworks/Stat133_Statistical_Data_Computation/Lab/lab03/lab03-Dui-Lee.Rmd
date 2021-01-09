@@ -1,0 +1,159 @@
+---
+title: "Lab03-Dui-Lee"
+author: "Dui"
+date: "2018³â 9¿ù 12ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r eval=FALSE}
+#Look at the man documentation of ls to find out how to list the contents in reverse order
+ls -r
+
+#How would you list the contents in long format arranged by time?
+ls -l -t
+
+#Find out how to use the wildcard * to move list all the files with extension .txt
+ls -F *txt
+
+#Use the wildcard * to move list all the files with extension .csv in reverse order
+ls -F *csv -r
+
+#Find out how to use the wilcard ? to list .csv files with names made of 4 characters
+ls ????.csv
+
+#Adapt the command to list .csv files with names containing the number 2.
+ls *[2]*.csv
+
+#Find out how to list files with names containing any number.
+ls *[0-9]*
+  
+#Use the command mv to move the bread.txt file to the folder txt-files
+mv bread.txt data/txt-files
+
+#Use the wildcard * to move all the text files to the directory txt-files
+mv *.txt data/txt-files
+
+#Use the wildcard * to move all the .csv files to the directory csv-files
+mv *.csv data/csv-files
+
+#Use the command cp to copy the bread.txt file (the one inside the folder txt-files) to the copies directory
+cp data/txt-files/bread.txt copies
+
+#Use the wildcard * to copy all the .txt files in the directory copies
+cp data/txt-files/*.txt copies
+
+#Use the wildcard * to copy all the .csv files in the directory copies
+cp data/csv-files/*.csv copies
+
+#Use the command mv to rename the file bread.txt as bread-recipe.txt
+mv bread.txt bread-recipe.txt
+
+#Rename the file Fisher.csv as iris.csv
+mv Fisher.csv iris.csv
+
+#Rename the file btaco.txt as breakfast-taco.txt
+mv btaco.txt breakfast-taco.txt
+
+#Rename the directory copies as copy-files
+mv copies copy-files
+
+#Find out how to use the rm command to delete the .csv files that are in copy-files
+rm /copy-files/*.csv
+
+#Find out how to use the rm command to delete the directory copy-files
+rm -rf copy-files
+
+#List the contents of the directory txt-files displaying the results in reverse (alphabetical) order
+ls data/txt-files -r
+```
+
+##Abalone Dataset
+
+* What¡¯s the character delimiter?
+    + the character delimiter is comma
+* Is there a row for column names?
+    + no row for a column names
+* Are there any missing values? If so, how are they codified?
+    + no missing values
+* What is the data type of each column?
+    + Name | Data Type 
+------|-------
+sex | nominal
+length | continous
+diameter | continous
+height | continous
+whole height | continous
+shucked height | continous
+viscera height | continous
+shell height | continous
+rings | integer
+
+##Some Bash Commands
+```{r eval=FALSE}
+#Use the file command to know what type of file is abalone.data.
+##abalone.data: ASCII text, with CRLF line terminators
+
+#Use the word count command wc to obtain information about: 1) newline count, 2) word count, and 3) byte count, of the abalone.data file.
+##4177   4177 196050 abalone.data
+
+#See the man documentation of wc and learn what option you should use to otabin only the number of lines in abalone.data.
+wc abalone.data -l
+
+#See the man documentation of head and learn what option you should use to display only the first 5 files in abalone.data.
+head abalone.data -n 5
+
+#See the man documentation of tail and learn what option you should use to display only the last 3 files in abalone.data.
+tail abalone.data -n 3
+```
+
+##Basic Importing
+
+```{r}
+abalone <- read.table("abalone.data", sep = ",")
+head(abalone)
+
+tail(abalone)
+
+str(abalone, vec.len = 1)
+```
+
+```{r}
+# Create a vector column_names for names of each column. Use the names displayed in the section ¡°7. Attributes Information¡±
+column_names <- c("Sex", "Length", "Diameter", "Height", "Whole weight", "Shucked weight", "Viscera weight", "Shell weight", "Rings")
+# Create another vector column_types with R data types
+column_types <- c("character", "real", "real", "real", "real", "real", "real", "real", "integer" )
+```
+
+```{r}
+# Look at the documentation of the function read.table() and try to read the abalone.data table in R
+abalone <- read.table("abalone.data", sep=',', col.names=column_names, colClasses = column_types)
+
+str(abalone)
+```
+
+```{r}
+# Now re-read abalone.data with the read.csv() function. Name this data as abalone2
+abalone2 <- read.csv("abalone.data")
+str(abalone2)
+```
+
+```{r}
+# How would you read just the first 10 lines in abalone.data?
+abalone10 <- head(read.table("abalone.data"), n = 10L)
+abalone10
+```
+
+```{r}
+# How would you skip the first 10 lines in abalone.data, in order to read the next 10 lines (lines 11-20)?
+abalone20 <- tail(head(read.table("abalone.data"), n = 20L), n = 10L)
+abalone20
+```
+
+```{r}
+# Use R functions to compute descriptive statistics,
+summary(abalone)
+```

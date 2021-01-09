@@ -1,0 +1,71 @@
+---
+title: "Stat133-workout1"
+author: "Dui"
+date: "2018-10-03"
+output: md_document
+---
+
+## Ranking of Teams
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.path = 'workout01-Dui-Lee_files/')
+```
+
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+nbateams = read_csv('../data/nba2018-teams.csv')
+```
+
+### Basic Rankings
+
+#### ranking the teams according to salary, arranged in decreasing order. Vertical line indicates the average salary. 
+
+```{r rank_by_total_salary}
+nbateams <- arrange(nbateams, desc(salary))
+ggplot(nbateams, aes(x = reorder(team, salary), y = salary)) + geom_bar(stat='identity') + coord_flip() +
+  geom_hline(yintercept = mean(nbateams$salary), color = 'red') +
+  labs(title = 'NBA Teams ranked by Total Salary', x = 'Team', y = 'Salary(in millions)')
+  
+```
+
+#### Create another bar chart of teams ranked by total points. Vertical line indicating the average team points. 
+
+```{r rank_by_total_points}
+ggplot(nbateams, aes(x = reorder(team, points), y = points)) + geom_bar(stat='identity') + coord_flip() +
+  geom_hline(yintercept = mean(nbateams$points), color = 'red') +
+  labs(title = 'NBA Teams ranked by Total Points', x = 'Team', y = 'Points')
+```
+
+#### Use efficiency to obtain a ranking, and create an associated bar chart of teams ranked by total efficiency. Vertical line indicates the average team efficiency.
+
+```{r rank_by_total_efficiency}
+ggplot(nbateams, aes(x = reorder(team, efficiency), y = efficiency)) + geom_bar(stat='identity') + coord_flip() +
+  geom_hline(yintercept = mean(nbateams$efficiency), color = 'red') +
+  labs(title = 'NBA Teams ranked by Total efficiency', x = 'Team', y = 'Efficiency')
+```
+
+#### Create a fourth bar chart but this time using your own index. 
+
+* I have used the index 'efficiency / experience'. One of the criteria of ranking team can be looking at how much total efficiency of the players that each team is getting with respect to player's total experience. With a same amount of experience, the team with higher efficiency can be treated as a better team. Hence, we can compare the ratio of efficiency and experience by dividing efficiency with experience, and get the comparison over different teams. 
+
+* Graph follows as below
+
+```{r rank_by_total_eff_per_ex}
+new_index <- nbateams %>% mutate(eff_per_ex = efficiency / experience)
+ggplot(new_index, aes(x = reorder(team, eff_per_ex), y = eff_per_ex)) + geom_bar(stat='identity') + coord_flip() +
+  geom_hline(yintercept = mean(new_index$eff_per_ex), color = 'red') +
+  labs(title = 'NBA Teams ranked by Total Efficiency Divided by Total Experience', x = 'Team', y = 'Efficiency / Experience')
+```
+
+## Comments and Reflections
+* It was my first time working on a project with such file structure. I do feel that it is an organized to way work through a project, and will be definitely useful in the future. Yet the practice do require time and effort.
+* It was not my first time using relative paths, but it was good refresher
+* It was my first time using an R script. I was lagging a little bit as I was commenting and typing in codes with out inserting R chunk. But I got used to it.
+* I think ggplot was quite hard as it used more layers like adding vertical line and ordering the y axis. 
+* Working with dplyr was on the easier side as it is quite logical to follow
+* I consulted a lot of Piazza, class material and google search
+* It took be 6~7 hours, with setting data dictionary and ggplot taking the most amount of time.
+* manipulating the data into the way I want to present is definitely interesting. 

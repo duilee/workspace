@@ -1,0 +1,132 @@
+---
+title: "Lab 01: Intro to R"
+author: "Dui Lee"
+date: "2018³â 8¿ù 29ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## First contact with the R console
+
+Leia's bill
+
+```{r}
+transportation = 100
+groceries = 200
+gym = 300
+rent = 400
+other = 500
+
+total = transportation + groceries + gym + rent + other
+total
+```
+
+Semester bill
+```{r}
+semester_bill = total * 5
+semester_bill
+```
+
+Year bill
+```{r}
+year_bill = total * 10
+year_bill
+```
+
+Bar Plot 
+```{r}
+phone = 80
+expenses = c(phone, transportation, groceries, gym, rent, other)
+barplot(expenses)
+```
+
+In decreasing order
+```{r}
+barplot(sort(expenses, decreasing = TRUE))
+```
+
+##Pythagoras Formula
+```{r}
+a = 3
+b = 4
+c= sqrt(a^2 + b^2)
+c
+```
+
+##Binomial Formula
+```{r}
+n = 5
+k = 2
+p = 0.5
+factorial(n) / (factorial(k) * factorial(n-k))
+```
+
+A fair coin is tossed 5 times. What is the probability of getting exactly 2 heads?
+
+```{r}
+factorial(n) / (factorial(k) * factorial(n-k)) * p^k * (1-p)^(n-k)
+```
+
+recalculate using choose()
+```{r}
+choose(n, k) * p^k * (1-p)^(n-k)
+```
+
+Consider rolling a fair die 10 times. What is the probability of getting exactly 3 sixes?
+
+```{r}
+n = 10
+k = 3
+p = 1/6
+choose(n, k) * p^k * (1-p)^(n-k)
+```
+
+2 heads in 5 coin tosses, and 3 sixes in 3 rolls of a die.
+
+```{r}
+dbinom(3, 10, 1/6)
+```
+
+How would you modify the previous binomial function to calculate the same probability (2 heads in 5 tosses) of a biased coin with a chance of heads of 35%?
+
+```{r}
+dbinom(2, 5, 0.35)
+```
+
+Finally, obtain the probability of getting more than 3 heads in 5 tosses with a biased coin of 35% chance of heads.
+
+```{r}
+dbinom(3, 5, 0.35)
+```
+
+##Installing Packages
+
+```{r}
+#install.packages(c("stringr", "RColorBrewer", "XML"))
+x = 2
+3*x^2 + 4*x + 8
+```
+
+```{r}
+x <- -3:3
+3*x^2 + 4*x + 8
+```
+
+- Files is good for locating the file you are looking for. It gives you the whole directory of the files on your desktop for you to open the file more conveniently
+
+- Help provides the information necessary for you to use R and R studio. You can also conveniently search for the desired information you are looking for. 
+
+- clicking on house icon, you land on the default landing page for help
+
+- History shows all the commands went through the console, and you can also send selected commands to console or the source
+
+- Environment shows all the variables that has been created in R studio. And you can import the dataset of variables in the environment by clicking import dataset. 
+
+
+
+
+
+

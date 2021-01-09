@@ -1,0 +1,155 @@
+C:\Users\DooDoo\Desktop\Cs88\wheel>python human.py
+< _ _ _ _ :  >
+guesser , please enter your next guess.
+d
+< _ _ _ _ : d >
+guesser , please enter your next guess.
+h
+< _ _ _ _ : d,h >
+guesser , please enter your next guess.
+a
+< _ _ _ _ : d,h,a >
+guesser , please enter your next guess.
+e
+< _ _ _ _ : d,h,a,e >
+guesser , please enter your next guess.
+i
+< _ _ _ _ : d,h,a,e,i >
+guesser , please enter your next guess.
+o
+< _ o o _ : d,h,a,e,i,o >
+guesser , please enter your next guess.
+u
+< _ o o _ : d,h,a,e,i,o,u >
+guesser , please enter your next guess.
+l
+< _ o o _ : d,h,a,e,i,o,u,l >
+guesser , please enter your next guess.
+k
+< _ o o _ : d,h,a,e,i,o,u,l,k >
+guesser , please enter your next guess.
+b
+< _ o o _ : d,h,a,e,i,o,u,l,k,b >
+guesser , please enter your next guess.
+t
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t >
+guesser , please enter your next guess.
+n
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n >
+guesser , please enter your next guess.
+m
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m >
+guesser , please enter your next guess.
+q
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q >
+guesser , please enter your next guess.
+e
+Please enter a single character not yet guessed
+l
+Please enter a single character not yet guessed
+v
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v >
+guesser , please enter your next guess.
+z
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v,z >
+guesser , please enter your next guess.
+c
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v,z,c >
+guesser , please enter your next guess.
+f
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v,z,c,f >
+guesser , please enter your next guess.
+g
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v,z,c,f,g >
+guesser , please enter your next guess.
+h
+Please enter a single character not yet guessed
+j
+< _ o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v,z,c,f,g,j >
+guesser , please enter your next guess.
+k
+Please enter a single character not yet guessed
+l
+Please enter a single character not yet guessed
+m
+Please enter a single character not yet guessed
+n
+Please enter a single character not yet guessed
+o
+Please enter a single character not yet guessed
+p
+< p o o _ : d,h,a,e,i,o,u,l,k,b,t,n,m,q,v,z,c,f,g,j,p >
+guesser , please enter your next guess.
+q
+Please enter a single character not yet guessed
+r
+Solved  ['p', 'o', 'o', 'r']  in  22 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python human.py
+< _ _ _ _ _ _ _ _ _ :  >
+guesser , please enter your next guess.
+x
+< _ _ _ _ _ _ _ _ _ : x >
+guesser , please enter your next guess.
+a
+< _ _ _ _ _ _ _ _ _ : x,a >
+guesser , please enter your next guess.
+e
+< _ _ _ _ _ _ _ e _ : x,a,e >
+guesser , please enter your next guess.
+i
+< _ _ _ _ _ _ _ e _ : x,a,e,i >
+guesser , please enter your next guess.
+u
+< _ _ _ u _ _ _ e _ : x,a,e,i,u >
+guesser , please enter your next guess.
+o
+< _ _ _ u _ _ _ e _ : x,a,e,i,u,o >
+guesser , please enter your next guess.
+y
+< _ _ _ u _ _ _ e _ : x,a,e,i,u,o,y >
+guesser , please enter your next guess.
+p
+< _ _ _ u _ _ _ e _ : x,a,e,i,u,o,y,p >
+guesser , please enter your next guess.
+k
+< _ _ _ u _ _ _ e _ : x,a,e,i,u,o,y,p,k >
+guesser , please enter your next guess.
+d
+< _ _ _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d >
+guesser , please enter your next guess.
+s
+< s _ _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s >
+guesser , please enter your next guess.
+h
+< s _ _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s,h >
+guesser , please enter your next guess.
+q
+< s _ _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q >
+guesser , please enter your next guess.
+t
+< s t _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q,t >
+guesser , please enter your next guess.
+o
+Please enter a single character not yet guessed
+m
+< s t _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q,t,m >
+guesser , please enter your next guess.
+n
+< s t _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q,t,m,n >
+guesser , please enter your next guess.
+d
+Please enter a single character not yet guessed
+e
+Please enter a single character not yet guessed
+f
+< s t _ u _ _ _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q,t,m,n,f >
+guesser , please enter your next guess.
+g
+< s t _ u g g _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q,t,m,n,f,g >
+guesser , please enter your next guess.
+r
+< s t r u g g _ e d : x,a,e,i,u,o,y,p,k,d,s,h,q,t,m,n,f,g,r >
+guesser , please enter your next guess.
+l
+Solved  ['s', 't', 'r', 'u', 'g', 'g', 'l', 'e', 'd']  in  20 guesses

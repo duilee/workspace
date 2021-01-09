@@ -1,0 +1,209 @@
+---
+title: "Warmup02-Dui-Lee"
+author: "Dui Lee"
+date: "2018³â 9¿ù 6ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Introduction
+
+```{r}
+load("tents.RData")
+ls()
+```
+
+
+* What class of objects are in the file?
+```{r}
+ob <- objects()
+for(i in ob){print(class(get(i)))}
+```
+
+* Are there any vectors, factors, list?
+    + All of them are vectors 
+
+```{r}
+ob <- objects()
+for(i in ob){print(mode(get(i)))}
+```
+
+* What flavor is each vector? 
+    + Majority is Character. Integer variables and number variables also exist. 
+
+```{r}
+ob <- objects()
+for(i in ob){print(str(get(i)))}
+```
+
+*check that all objects have the same lengths. 
+    + 'season' object is recycled to length = 90. Hence all objcects have same length. 
+
+```{r}
+ob <- objects()
+for(i in ob){print(length(get(i)))}
+```
+
+##1) A bit of data preprocessing
+
+* Data structure of tents
+```{r}
+data <- load('tents.Rdata')
+str(data)
+```
+* Display the names of columns in tents
+    + seems like no name is assigned 
+```{r}
+colnames(data)
+```
+* take a look at the first 5 rows
+
+```{r}
+head(data, 5)
+```
+
+* take a look at the last 3 rows
+```{r}
+tail(data, 3)
+```
+
+###Quantitative Variable
+* price summary
+```{r}
+summary(price)
+```
+```{r}
+# mean
+mean(price)
+# standard deviation
+sd(price)
+# Minimum value
+min(price)
+# Maximum value
+max(price)
+# Median
+median(price)
+# Quantiles
+quantile(price)
+```
+
+```{r}
+hist(price)
+```
+
+```{r}
+boxplot(price)
+```
+
+```{r}
+plot(density(height))
+```
+
+- Density curve for the height has two peaks centered around 110 and 180. The spread is from 50 to 250. The second peak is not so expected from the pattern .
+
+### Qualitative Variable
+
+```{r}
+# factor Bestuse
+cate = factor(bestuse)
+cate
+```
+```{r}
+# Frequency table for Bestuse
+table(cate)
+```
+```{r}
+#Relative frequencies in proportions
+prop.table(table(cate))
+```
+
+* Looking at the distribution, Backpacking has the highest frequency with 59 and 65.5% in proportion. Carcamping follows with 25 and 27.7. And Mountaineering has the lowest frequency with 6 and 6.7%
+
+```{r}
+# Frequencies with a barchart
+barplot(prop.table(table(cate)))
+```
+
+##Scatterplot of Height and Price
+```{r}
+plot.new()
+plot.window(xlim = c(50, 250), ylim = c(0, 800), xaxs = "i")
+axis(1, col.axis = "grey30")
+axis(2, col.axis = "grey30", las = 1)
+title(main = "Height and Price")
+points(height, price)
+
+```
+
+```{r}
+plot(height, price, cex = 1.5, pch = 1, col = "red", xlab = "height", ylab = "price", main = "Height and Price")
+```
+
+##Correlation between Height and Price
+```{r}
+# n: number of individuals
+n = length(price)
+# x: mean of variable X (height) 
+x = sum(height) / n
+# y: mean of variable Y (price) 
+y = sum(price) / n
+# var(X): variance of X
+var_x = sum(price - x)**2 / (n-1)
+# var(Y): variance of Y 
+var_y = sum(height - y)**2 / (n-1)
+# sd(X): standard deviation of X
+sd_x = sqrt(var_x)
+# sd(Y): standard deviation of Y
+sd_y = sqrt(var_y)
+# cov(X,Y): covariance between X and Y
+cov = sum((price - x)*(height - y)) / (n-1)
+# cor(X,Y): correlation between X and Y
+cor = cov / (sd_x * sd_y)
+```
+
+```{r}
+#weights in pound
+weight_lbs = weight / 453.592
+#height in inches
+height_in = height / 2.54
+```
+
+```{r}
+# how many tents have a price less than or equal to $300 
+length(price[price <= 300])
+# how many tents have a price between $300 and $400 (including both $300 and $400 prices) 
+length(price[price >= 300 & price <= 400])
+# what¡¯s the name of the tent with maximum price 
+tent[price == max(price)]
+# how many tents have a price > $400 AND weight < 1500 grams 
+length(tent[price > 400 & weight < 1500])
+# calculate the 90th percentile for height and assign it to the object height_p90 (display this value)
+quantile(height, probs = seq(0, 1, 0.3))
+height_p90 = 183
+# calculate the 90th percentile for weight and assign it to the object weight_p90 (display this value)
+quantile(weight, probs = seq(0, 1, 0.3))
+weight_p90 = 6843.54
+# displaythenameofthetentswith height > height_p90ANDweight > weight_p90
+tent[height > height_p90 & weight > weight_p90]
+```
+
+##Working with factors
+```{r}
+# Use cut() to create a factor weight_cut by using the breaking points and labels according to the following table
+brk = seq(0, 9000, 1000)
+weight_cut = cut(weight, b = brk, labels = c('1kg', '2kg', '3kg', '4kg', '5kg', '6kg', '7kg', '8kg' , '9kg'))
+table(weight_cut)
+```
+
+##Reordering a factor
+```{r}
+# Find out how to use the factor() function in order to convert season as an ordinal factor. The resulting levels should be 3-season, 3-4-season, and 4-season (in this order!). 
+fac = factor(season, levels = c('3-season', '3-4-season', '4-season'), ordered = TRUE)
+is.ordered(fac)
+```
+
+##Comments and Reflections
+* learning how to use some of the new functions such as cut, plot was little bit difficult. Quering data depending on the condition was more on the easy side as we have experienced it in the class and in the lab. It took be 5~6 hours to finish the lab. The most consuming part was part 3. I am still not quite clear about how factor works, so will follow up with more research. 

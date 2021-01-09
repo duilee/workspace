@@ -1,0 +1,200 @@
+---
+title: "Lab04-Dui-Lee"
+author: "Dui"
+date: "2018³â 9¿ù 19ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Part 1) Git Workshop
+
+```{bash, eval=FALSE}
+$ git config --global user.name "Dui Lee"
+$ git config --global user.email "duilee@berkeley.edu"
+$ git config --global color.ui "auto"
+```
+
+##Creating a Repository
+
+```{bash, eval=FALSE}
+#Making new directory and strating git
+$ cd ~/Desktop
+$ mkdir planets
+$ cd planets
+$ git init
+
+#Places to Create Git Repositories
+## For the sub-directoy moons, git init ran on planets keeps track of all files, hence starting another git init command in moons is unnecessary
+
+#Correcting git init Mistakes
+##following command removes .git
+$ rm -rf moons/.git
+```
+
+##Tracking changes
+```{bash, eval=FALSE}
+#create and edit file using following command
+$ nano mars.txt
+#Check status with
+$ git status
+#using git add to track file before committing, i.e (also add comment)
+$ git add mars.txt
+$ git commit -m "Start notes on Mars as a base"
+
+#Ask git to show project's histroy using git log
+$ git log
+
+#Use git diff to compare changes in the file and the file committed
+
+#Choosing a commit message
+##¡°Discuss effects of Mars¡¯ climate on the Mummy¡± , short, descriptive, and imperative.
+
+#Which command(s) below would save the changes of myfile.txt to my local Git repository?
+$ git add myfile.txt
+$ git commit -m "my recent changes"
+
+#Committing Multiple Files
+##After making changes to files ex. mars.txt and venus.txt
+$ git add mars.txt venus.txt
+$ git commit -m "Write plans to start a base on Venus"
+
+#bio Repository
+## same drill create new directory and git init. use git diff to track change. 
+
+#Author and Committer
+##using followong command, one can keep track of changes and authors i.e 
+$ git add me.txt
+$ git commit -m "Update Vlad's bio." --author="Frank N. Stein <franky@monster.com>"
+```
+
+##Exploring History
+```{bash, eval=FALSE}
+#explore the differences between older commites using following command, where ~? can be specified
+$ git diff HEAD~1 mars.txt
+
+#can also use the commit ID, i.e
+$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
+$ git diff f22b25e mars.txt
+
+#to discard changes and bring the file back, use
+$ git checkout HEAD mars.txt
+
+#Recovering Older Versions of a File
+$ git checkout HEAD data_cruncher.py
+$ git checkout <unique ID of last commit> data_cruncher.py
+
+#Reverting a Commit
+##use git log to find the history of project then use git revert
+
+#Understanding Workflow and History
+#following command will give output 
+$ cd planets
+$ echo "Venus is beautiful and full of love" > venus.txt
+$ git add venus.txt
+$ echo "Venus is too hot to be suitable as a base" >> venus.txt
+$ git commit -m "Comment on Venus as an unsuitable base"
+$ git checkout HEAD venus.txt
+$ cat venus.txt #this will print the contents of venus.txt to the screen
+##output 
+#Venus is beautiful and full of love
+
+#Checking Understanding of git diff
+$ git diff HEAD~3 mars.txt. 
+##compares current file with file with 3 commits before
+$ git diff [ID] mars.txt
+## comapres current file with that particular ID commit
+
+#Getting Rid of Staged Changes
+##git checkout also works with changes not committed
+
+#Explore and Summarize Histories
+$ git log --patch HEAD~3 *.txt
+##following command helps you explore to the files 3 committs before for all .txt files
+
+```
+
+##Ignoring Things
+
+```{bash, eval=FALSE}
+#use .gitignore to exclude some files from tracking
+$ nano .gitignore
+$ git add .gitignore
+$ git commit -m "Ignore data files and the results folder."
+
+#ignoring nested files
+## change .gitignore to following, i.e. for only ignoring a sub-folder called plots under results add following to .gitignore
+##results/plots/
+
+#Including Specific Files
+*.data           # ignore all data files
+!final.data      # except final.data
+
+#Ignoring all data Files in a Directory
+##Appending results/data/position/gps/*.data will match every file in results/data/position/gps that ends with .data.
+
+#The Order of Rules
+##The ! modifier will negate an entry from a previously defined ignore pattern
+
+#Log Files
+##append either log_* or log* as a new entry in your .gitignore
+##track log_01 using git add -f log_01
+```
+
+##Remotes in GitHub
+```{bash, eval=FALSE}
+#copy url to local repository, i.e
+$ git remote add origin https://github.com/vlad/planets.git
+#Once the nickname origin is set up, this command will push the changes from our local repository to the repository on GitHub:
+$ git push origin master
+
+#We can pull changes from the remote repository to the local one as well:
+$ git pull origin master
+
+#GitHub GUI
+##use git log(for left button) to get the histroy, git diff(middle button) will show the difference, right-most button helps to view all the files in the repository at the time of commit. 
+
+#Push vs. Commit
+##When we push changes, we¡¯re interacting with a remote repository to update it with the changes we¡¯ve made locally (often this corresponds to sharing the changes we¡¯ve made with others). Commit only updates your local repository.
+
+#Fixing Remote Settings
+##git remote set-url allows us to change the remote¡¯s URL to fix it.
+
+```
+
+#Part 2) Git and Github Practice
+
+##1)Create a New GitHub Repository
+```{bash, eval=FALSE}
+#Repository made with following message
+echo "# Demo Repo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/duilee/demo-repo.git
+git push -u origin master
+```
+
+##2) Create a local Git Repository
+```{bash, eval=FALSE}
+# demo-repo directory is made and git initialized. 
+```
+
+##3) Adding a README file
+```{bash, eval=FALSE}
+#Readme file edited and changes committed
+```
+
+##4) Adding remote
+```{bash, eval=FALSE}
+#remote repository is added
+$ git remote add origin https://github.com/duilee/demo-repo.git
+```
+
+##5) Pushing changes to a remote repo
+```{bash, eval=FALSE}
+#changes pushed to remote repo
+$ git push origin master
+```

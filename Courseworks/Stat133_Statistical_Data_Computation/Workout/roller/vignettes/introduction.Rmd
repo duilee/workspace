@@ -1,0 +1,123 @@
+---
+title: "Introduction to Roller"
+author: "Dui Lee"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to roller}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(collapse = T, comment = "#>")
+library(roller)
+```
+
+## Rolling a device
+
+The package '"roller"' is package for simulating rolling a device a given number of times.
+One can create own device with customized sides and probability, and can simulate rolling
+for desired number of times. Visualization of rolls is also available. 
+
+## Creating a device
+
+To create a device, use the function 'coin()'
+
+```{r}
+demodev <- device()
+demodev
+```
+
+By default, device will create a device with side 1 and 2 and with 0.5 probability for each. 
+To create your own device, you need to specify the sides and probabilties with following,
+- sides has at least 2 elemens
+- sides has no duplicate
+- probabilities all have value between 0 and 1
+- probabilities add up to one
+
+## Rolling the device
+
+To roll your device, use 'roll()', with your designated device in the input. 
+
+```{r}
+roll(demodev)
+```
+By default, 'roll()' will your roll your device once and return the result.
+You can specify the number of times you want to roll your device,
+by specifying 'times'
+
+```{r}
+demoroll <- roll(demodev, times = 10)
+demoroll
+```
+
+You can also explore related information of your roll result.
+
+- use 'rolls' to extract the rolls result only
+```{r}
+demoroll$rolls
+```
+
+- use 'sides' to examine the sides of given device
+```{r}
+demoroll$sides
+```
+
+- use 'prob' to examine the probability of each side
+```{r}
+demoroll$prob
+```
+
+- use 'total' to figure out total number of rolls
+```{r}
+demoroll$total
+```
+
+## Summary Method for object 'rolls'
+
+- Summary method can be used by 'summary()' with rolls object as input
+```{r}
+summary(demoroll)
+```
+Symmary will provide a datafram containing 3 columns of 'side', 'count' and 'prop'. 
+- side : the sides of the rolled device
+- count : the frequency(count) of each side of the rolled device
+- prop : the relative frequency(proportion) of each side of the rolled device
+
+The dataframe can be accessed by using 'freqs'
+```{r}
+demosummary <- summary(demoroll)
+demosummary$freqs
+```
+
+
+## Plot Method for object 'rolls'
+
+The plot method for object 'rolls' can be used with function 'plot()' with 'rolls' object as input
+
+```{r}
+plot(demoroll)
+```
+
+'plot()' will return a barchart of proportions
+
+## Addtional Methods
+
+- An extraction method to extract the value of a given roll, following regular r indexing
+```{r}
+demoroll[2]
+```
+
+- A replacement method to replace the value of a given roll also follows regular r indexing
+```{r}
+demoroll[2] <- 1
+demoroll[2]
+```
+
+- an addition method will add more roll, i.e to add 10 more rolls,
+```{r}
+demoroll + 10
+```
+
+

@@ -1,0 +1,160 @@
+---
+title: "warmup04-Dui-Lee"
+author: "Dui Lee"
+date: "2018³â 9¿ù 23ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##1) Import the data in R
+
+```{r}
+#import using read_csv, and col_types are specified. Column types not speicified below had integer values, hence are left untouched. 
+library("readr")
+data = read_csv("nba2018.csv", col_types = cols(player = col_character(),
+                                         team = col_character(),
+                                         birth_date = col_character(),
+                                         country = col_character(),
+                                         experience = col_character(),
+                                         college = col_character(),
+                                         position = col_factor(c("C","PF", "PG", "SF", "SG")),
+                                         salary = col_double(),
+                                         field_goals_perc = col_double(),
+                                         points3_perc = col_double(),
+                                         points2_perc = col_double(),
+                                         points1_perc = col_double(),
+                                         effective_field_goal_perc = col_double(),
+                                         salary = col_integer()
+                                         
+                                         ))
+
+str(data)
+```
+
+#2)Right after importing the data
+
+```{r}
+#experience "R" converted to 0 and column type converted into integers. 
+data$experience[data$experience == "R"] = 0
+data$experience = as.integer(data$experience)
+summary(data$experience)
+```
+
+```{r}
+#Salary converted into millions and display summary
+data$salary = data$salary / 1000000
+summary(data$salary)
+```
+
+```{r}
+#Relabel positions factors and display frequencies of the factors
+levels(data$position) <- c("center", "power_fwd", "point_guard", "small_fwd", "shoot_guard")
+table(data$position)
+```
+
+#3) A bit of subscripting(i.e. indexing, slicing, subsetting)
+
+```{r}
+#How many players went to UCLA (¡°University of California, Los Angeles¡±)?
+length(data$college[data$college == "University of California, Los Angeles" & is.na(data$college) == FALSE])
+
+#How many players went to Cal (¡°University of California, Berkeley¡±)?
+length(data$college[data$college == "University of California, Berkeley" & is.na(data$college) == FALSE])
+
+#What¡¯s the largest weight value?
+max(data$weight)
+
+#Who are the players with the largest weight value?
+data$player[data$weight == max(data$weight)]
+
+#What¡¯s the overall average weight?
+mean(data$weight)
+
+#What is the median salary of all players?
+median(data$salary)
+
+#What is the median salary of the players with 10 years of experience or more?
+median(data$salary[data$experience >= 10])
+
+#What is the median salary of Shooting Guards (SG) and Point Guards (PG)?
+median(data$salary[data$position == "shoot_guard" | data$position == "point_guard"])
+
+#What is the median salary of Power Forwards (PF), 30 years or older, weighing 240 pounds or more?
+median(data$salary[data$position == "power_fwd" & data$age >= 30 & data$weight >= 240])
+
+#Create a data frame gsw with the player name, position, height, weight, and age of Golden State Warriors (GSW). Display this data frame.
+gsw = data[c(data$team == "GSW") , c(1,4,5,6,13)]
+gsw
+```
+#4) Performance of players
+```{r}
+#Add the following variables
+##missed_field_goals (missed field goals)
+data["missed_field_goals"] <- NA
+data$missed_field_goals <- data$field_goals_atts - data$field_goals
+##missed_free_throws (missed free throws)
+data["missed_free_throws"] <- NA
+data$missed_free_throws <- data$points1_atts - data$points1
+##rebounds (total rebounds: offensive and defensive)
+data["rebounds"] <- NA
+data$rebounds <- data$off_rebounds + data$def_rebounds
+##mins_game (minutes per game; NOT to be used when calculating EFF)
+data["mins_game"] <- NA
+data$mins_game <- data$minutes / data$games
+```
+
+```{r}
+#add column efficiency
+eff = (data$points + data$total_rebounds + data$assists + data$steals + data$blocks - data$missed_field_goals - data$missed_free_throws - data$turnovers) / data$games
+data["efficiency"] <- NA
+data$efficiency <- eff
+```
+
+```{r}
+#summary statistics for efficiency
+summary(data$efficiency)
+```
+
+```{r}
+#histrogram for efficiency along with colors, title, and axis-label
+hist(data$efficiency, main="Distribution of Player Efficiency", col = c("black", "gray", "red", "green", "blue", "orange", "purple", "yellow"), xlab="player efficiency")
+```
+
+```{r}
+#Player name, team, salary, and efficiency value of the top-10 players by EFF in decreasing order
+data[order(data$efficiency, decreasing = TRUE),][c(1:10),][,c("player", "team", "salary", "efficiency")]
+```
+
+```{r}
+#players with a negative EFF
+data[data$efficiency < 0,][, c("player")]
+```
+
+#5) Further Exploration
+```{r}
+#The more efficient a player is, the higher his salary?
+plot(efficiency~salary, data = data ,log= "xy")
+```
+\
+*Looks like there is a correlation between salary and efficiency and it is a positive relation. Hence I can say that higher the salary, higher the efficiency
+
+```{r}
+#As players get older, do they tend to become more efficient?
+plot(efficiency~age, data = data)
+```
+\
+*There seems to be no correlation between age and efficiency. Hence it is not true that as players get older, they tend to become more efficient
+
+```{r}
+#Does the rank of a player seem to be associated with his efficiency (i.e. the more importnat the rank, the more efficient)?
+plot(rank~efficiency, data = data)
+
+```
+\
+*It looks like as ranks get closer to 1, the efficiency is more concentrated on the higher side. Hence we can say that the more important the rank, the more efficient
+
+#6) Comments and Reflections
+*It took me about 4~5 hours to complete this. I think modifying the data frame was the hard part. Plotting the graphs to find evidence for the last part of the lab was relatively on the easier side. To complete this assignment, I did have to consult some external websites to find specific commands. The most consuming part was setting up the data, assigning the data types and changing labels. I didn't really have something that I did not understand, but figuring out how to modify data frames felt a little frustrating at first. 

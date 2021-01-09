@@ -1,0 +1,224 @@
+---
+title: "warmup07-Dui-Lee"
+author: "Dui"
+date: "2018³â 11¿ù 10ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+#import the data
+library("readr")
+data = read_csv("text-emotion.csv")
+
+```
+
+##1) Number of characters per tweet
+
+- Count the number of characters in the tweet contents; create a vector for this purpose.
+```{r}
+tweetlen <- nchar(data$content)
+```
+
+- Display the summary() of the vector obtained above
+```{r}
+summary(tweetlen)
+```
+
+- Likewise, graph a histogram of these counts. To plot the histogram, use a bin width of 5 units: 1-5, 6-10, 11-15, 16-20, etc. In other words: the first bin involves tweets between 1 and 5 characters (inclusive), the second bin involves tweets containing between 6 and 10 characters (inclusive), and so on.
+```{r}
+hist(tweetlen,breaks = c(5*0:34), las =1,xlab = '# of characters' ,main ="Histogram of tweet lengths")
+```
+
+- Are there any tweets with 0 characters?
+```{r}
+#No tweets with 0 characters
+sum(tweetlen == 0)
+```
+
+- Are there any tweets with 1 character? 
+```{r}
+# 4 tweets with length 1
+sum(tweetlen == 1)
+
+#contents of length 1 tweets
+data$content[tweetlen == 1]
+
+#positions of length 1 tweets
+which(tweetlen == 1)
+```
+
+- What is the tweet with the most characters (i.e. max length)?
+```{r}
+#number of charcters for max length tweet
+max(tweetlen)
+
+#its content
+data$content[which(tweetlen == max(tweetlen))]
+
+#its location
+which(tweetlen == max(tweetlen))
+```
+
+##2) Sentiment
+
+- What are the different types of sentiments (i.e. categories)?
+
+```{r}
+levels(factor(data$sentiment))
+```
+- Compute the frequencies (i.e. counts) of each sentiment
+
+```{r}
+table(factor(data$sentiment))
+```
+
+- Graph the relative frequencies (i.e. proportions) with a horizontal barplot (bars horizontally oriented) in decreasing order, including names of sentiment types.
+
+```{r}
+library(ggplot2)
+tbl = table(factor(data$sentiment)) / 40000
+names(tbl)
+
+
+df = data.frame("sentiment" = sort(tbl))
+df
+
+ggplot(df, aes(x = sentiment.Var1, y = sentiment.Freq)) + geom_bar(stat='identity') + coord_flip() +
+  labs(title = 'Sentiment Frequency', x = 'Frequency', y = 'Sentiment')
+```
+
+- Sentiment and length of tweets: compute a table with the average length of characters per sentiment (i.e. average number of characters for neutral tweets, for happy tweets, etc.). Display this table.
+```{r}
+library(dplyr)
+
+avgtbl <- data %>% mutate('leng' = tweetlen) %>% select(sentiment, leng) %>% group_by(sentiment) %>% summarise(avg = mean(leng))
+
+avgtbl
+```
+
+##3) Author (usernames)
+
+Confirm that the values in column author follow each of the rules for valid usernames:
+- No longer than 15 characters (if you find usernames longer than 15 characters, display them)
+
+```{r}
+#no username longer than 15
+userlen <- nchar(data$author)
+sum(userlen > 15)
+```
+
+- Contain alphanumeric characters and underscores (if you find usernames containing other symbols, display them)
+```{r}
+library(stringr)
+
+alphanum <- function(x) {
+  chklist <- str_split("abcdefghijklmnopqrstuvwxyz0123456789_", '')
+  y = tolower(x)
+  
+  for (i in (1:nchar(x))) {
+    if (sum((substr(y, i, i) == chklist[[1]])) == 0) {
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+}
+
+chk <- rep(0, 40000)
+for (i in (1:40000)) {
+  chk[i] = alphanum(data$author[i])
+}
+
+sum(chk)
+
+#there is one username with dash, not underscore
+data$author[!chk]
+```
+
+- What is the number of characters of the shortest usernames? And what are the names of these authors? (write commands to answer these questions)
+```{r}
+#shortest username has length 2
+min(userlen)
+#names of shortest username
+data$author[which(userlen == min(userlen))]
+```
+
+##4) Various Symbols and Strings
+
+- How many tweets contain at least one caret symbol "??" 
+
+```{r}
+#40 tweets with at least one caret symbol
+sum(str_detect(data$content,'\\Q^\\E'))
+
+```
+
+- How many tweets contain three or more consecutive dollar symbols "$" 
+```{r}
+#7 tweets with three or more consecutive dollar symbols
+sum(grepl("\\Q$$$\\E", data$content))
+
+```
+
+- How many tweets do NOT contain the characters "a" or "A"
+```{r}
+#1875 tweets do not contain the characters "a" or "A"
+sum(!(grepl("a|A", data$content)))
+
+```
+
+- Display the first 10 elements of the tweets that do NOT contain the characters "a" or "A"
+```{r}
+head(data$content[!(grepl("a|A", data$content))], 10)
+```
+
+-  Number of exclamation symbols "!": compute a vector with the number of exclamation symbols in each tweet, and display its summary().
+
+```{r}
+exclamnum <- str_count(data$content, '!')
+summary(exclamnum)
+
+```
+
+- What¡¯s the tweet (content) with the largest number of exclamation symbols !? Display its content. 
+```{r}
+data$content[which(exclamnum == max(exclamnum))]
+```
+
+- How many tweets contain the individual strings "omg" or "OMG" (write a command to answer this question). For example:
+```{r}
+#138 tweets with the individual strings "omg" or "OMG"
+sum(grepl("^omg | omg | omg$|^OMG | OMG | OMG$", data$content))
+```
+
+##5) Table of Average Number of Patterns by Sentiment
+
+- Write code to create (and display) a table (e.g. data frame, tibble, matrix) in which the rows correspond to the unique types of sentiments, and the columns correspond to: 
+1. average number of lower case letters 
+2. average number of upper case letters 
+3. average number of digits 
+4. average number of punctuation symbols 
+5. average number of spaces 
+
+```{r}
+avgtbl2 <- data %>% mutate('lowernum' = str_count(content, "[[:lower:]]"),
+                'uppernum' = str_count(content, "[[:upper:]]"),
+                'digitnum' = str_count(content, "[[:digit:]]"),
+                'puncnum' = str_count(content, "[[:punct:]]"),
+                'spacenum' = str_count(content, "[[:space:]]")) %>%
+  select(sentiment, lowernum, uppernum, digitnum, puncnum, spacenum) %>% 
+  group_by(sentiment) %>% 
+  summarise_all(mean) %>% 
+  rename("Avg # of lower case letters" = lowernum,
+         "Avg # of uppter case letters" = uppernum,
+         "Avg # of digits" = digitnum,
+         "Avg # of punctuations" = puncnum,
+         "Avg # of spaces" = spacenum)
+
+avgtbl2
+```
+

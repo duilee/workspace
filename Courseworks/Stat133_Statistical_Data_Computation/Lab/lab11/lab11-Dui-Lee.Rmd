@@ -1,0 +1,83 @@
+---
+title: "lab11-Dui-Lee"
+author: "Dui"
+date: "2018³â 11¿ù 7ÀÏ"
+output: html_document
+---
+
+##Introduction
+
+###Part 1) Computing probabilities
+
+####A Less basic Probability problem
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#Create two character vectors box1 and box2 with colors of balls
+box1 <- c('blue', 'blue', 'red')
+box2 <- c('blue', 'blue', 'red', 'red', 'red', 'white')
+
+#The random experiment involves generating a uniform random number using runif(1).
+#Repeat the experiment 1000 times using a for loop. 
+
+drawn_balls <- matrix(nrow = 1000, ncol = 4)
+
+for (i in 1:1000) {
+  
+  if (runif(1) > 0.5) {
+  smple <- sample(box1, 4, replace = TRUE)
+} else {
+  smple <- sample(box2, 4)
+}
+  drawn_balls[i, ] = smple
+  
+}
+
+prop <- rep(0, 1000)
+tf <- drawn_balls == 'blue'
+
+
+for (i in 1:1000) {
+  prop[i] = sum(tf[i, ])
+}
+
+#Once you filled the matrix drawn_balls, compute the proportion of samples containing: 0, 1, 2, 3, or 4 blue balls.
+
+c <- table(prop) / 1000
+c
+
+```
+
+```{r}
+
+#Try to obtain the following plot showing the relative frequencies of number of blue balls over the series of repetitions.
+
+lst <- vector("list", 5)
+
+for (i in 0:4) {
+  lst[[i + 1]] <- cumsum(prop == i) / (1:1000)
+}
+
+df <- data.frame("reps" = c(1:1000), 
+                 "zero" = lst[[1]],
+                 "one" = lst[[2]],
+                 "two" = lst[[3]],
+                 "three" = lst[[4]],
+                 "four" = lst[[5]])
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(df, aes(x = reps)) +
+  geom_line(aes(y=zero), colour="orange") +
+  geom_line(aes(y=one), colour="brown") +
+  geom_line(aes(y=two), colour="green") +
+  geom_line(aes(y=three), colour="blue") +
+  geom_line(aes(y=four), colour="purple") +
+  labs(x="reps", y = "freq", title = "Relative frequencies of number of blue balls")
+```
+

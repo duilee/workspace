@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1543736421416.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3277522991",
+    "id" : "8469314C",
+    "lastKnownWriteTime" : 1542676495,
+    "last_content_update" : 1542676495,
+    "path" : "C:/Users/DooDoo/Desktop/Stat133/stat133-fa18/roller/tests/testthat/test-roll.R",
+    "project_path" : "tests/testthat/test-roll.R",
+    "properties" : {
+        "cursorPosition" : "9,36",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

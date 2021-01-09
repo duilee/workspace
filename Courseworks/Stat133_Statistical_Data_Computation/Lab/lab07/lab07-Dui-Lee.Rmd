@@ -1,0 +1,441 @@
+---
+title: "lab07-Dui-Lee"
+author: "Dui"
+date: "2018³â 10¿ù 10ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+```{r}
+#function example
+#' @title area of rectangle
+#' @description calculates the area of a rectangle
+#' @param len length of the rectangle (numeric)
+#' @param wid width of the rectangle (numeric)
+#' @return computed area
+rect_area <- function(len = 1, wid = 1) {
+  if (len < 0) {
+    stop("len must be positive")
+  }
+  if (wid < 0) {
+    stop("wid must be positive")
+  }
+  area <- len * wid
+  return(area)
+}
+```
+
+##Simple Math Functions
+
+```{r}
+#' @title f(x)
+#' @description computes square of x
+#' @param x some number x
+#' @return f(x)
+f <- function(x) {return(x ^ 2)}
+f(2)
+f(-5)
+```
+
+```{r}
+#' @title g(x)
+#' @description computes 2*x + 5
+#' @param x some number x
+#' @return g(x)
+g <- function(x) {return(2 * x + 5)}
+g(0)
+g(-5/2)
+```
+
+```{r}
+#' @title fog(x)
+#' @description computes composite function of f*g
+#' @param x some number x
+#' @return fog(x)
+fog <- function(x) {return(f(g(x)))}
+fog(2)
+fog(-5)
+```
+
+```{r}
+#' @title gof(x)
+#' @description computes composite function of g*f
+#' @param x some number x
+#' @return gof(x)
+gof <- function(x) {return(g(f(x)))}
+gof(0)
+gof(-5/2)
+```
+
+##Pythagoras
+
+```{r}
+#' @title pythagoras
+#' @description computes the length of hypotenuse
+#' @param a length of one side a
+#' @param b length of other side b
+#' @return computed hypotenuse
+pythagoras <- function(a,b) {return((a^2 + b^2)^(1/2))}
+pythagoras(3,4)
+```
+
+####modified
+```{r}
+#' @title pythagoras modified
+#' @description computes the length of hypotenuse
+#' @param a length of one side a
+#' @return computed hypotenuse given two sides are both a
+pythagoras <- function(a,b) {
+  b <- a
+  return((a^2 + b^2)^(1/2))}
+pythagoras(5)
+```
+
+##Area of a circle
+
+```{r}
+#' @title area of circle
+#' @description computes the area of circle given radius r
+#' @param r radius of the circle
+#' @return area of circle
+circle_area <- function(radius) {return(radius^2 * pi)}
+circle_area(radius=3)
+```
+
+####modified are of circle
+```{r}
+#' @title area of circle
+#' @description computes the area of circle given radius r
+#' @param r radius of the circle
+#' @return area of circle
+circle_area <- function(radius) {
+  if (radius < 0) {stop("radius cannot be negative")}
+  return(radius^2 * pi)}
+circle_area(radius= -2)
+```
+
+##Surface area of a cylinder
+
+```{r}
+#' @title surface area of a cylinder
+#' @description computes the surface area of a cylinder given radius and height
+#' @param r radius of the circle
+#' @param h height of the cylinder
+#' @return surface area of the cylinder
+cylinder_area <- function(radius = 1, height = 1) {
+  if (radius < 0 | height < 0) {
+    stop("height or radius cannot be negative")
+  }
+  return(2*circle_area(radius) + (2*pi*radius*height))
+}
+
+# radius 2, height 3
+cylinder_area(radius = 2, height = 3)
+
+# bad radius
+cylinder_area(radius = -2, height = 1)
+
+# bad height
+cylinder_area(radius = 2, height = -1)
+
+# bad radius and height
+cylinder_area(radius = -2, height = -1)
+
+```
+
+##Volume of a cylinder
+
+```{r}
+#' @title volume of a cylinder
+#' @description computes the volume a cylinder given radius and height
+#' @param r radius of the circle
+#' @param h height of the cylinder
+#' @return volume of the cylinder
+cylinder_volume <- function(radius = 1, height = 1) {
+  if (radius < 0 | height < 0) {
+    stop("height or radius cannot be negative")
+  }
+  return(circle_area(radius) * height)
+}
+
+# default (radius 1, height 1)
+cylinder_volume()
+
+cylinder_volume(radius = 3, height = 10)
+cylinder_volume(height = 10, radius = 3)
+
+```
+
+##Unit Conversion Formulas
+
+###Miles to Kilometers
+
+```{r}
+#' @title miles to kilometer
+#' @description converts miles to kilometers
+#' @param x number of miles
+#' @return kilometer value of given x miles
+miles2kms <- function(x) {return(x * 1.6)}
+
+x = data.frame("Miles" = c(1:9, seq(10,100,10)), "kms" = miles2kms(c(1:9, seq(10,100,10))))
+
+x
+```
+
+###Gallons to Liters, and viceversa
+
+```{r}
+library(dplyr)
+#' @title gallon to liter
+#' @description converts gallon to liter
+#' @param x number of gallon
+#' @return liter value of given x gallon
+gallon2liters <- function(x) {return(x * 3.78541)}
+
+#' @title liter to gallon
+#' @description converts liter to gallon
+#' @param x number of liter
+#' @return gallon value of given x litter
+liters2gallon <- function(x) {return(x / 3.78541)}
+
+y = data.frame('liters' = c(1:9, seq(10,100,10)))
+y %>% mutate(gallons = liters2gallon((liters)))
+```
+
+###Seconds to Years
+
+```{r}
+#' @title seconds to years
+#' @description converts seconds to years
+#' @param x number of seconds
+#' @return seconds converted to years
+seconds2years <- function(x) {return(x / 60 / 60 / 24 / 365)}
+seconds2years(1000000000)
+```
+
+###Polynomials
+
+```{r}
+#' @title polynomical function 1
+#' @description computs (x^2) * (x - 1)
+#' @param x some number
+#' @return computes (x^2) * (x - 1)
+poly1 <- function(x) {return((x ^ 2) * (x - 1))}
+
+# set of points
+x <- seq(-4, 4, length.out = 20)
+y <- poly1(x)
+
+# graph polynomial
+plot(x, y, type = 'l', lwd = 3, col = "#FB7215", las = 1)
+abline(h = 0, v = 0, col = '#888888aa', lwd = 1.5)
+title(main = expression(paste(f(x), ' = ', x^2, (x - 1))))
+```
+
+```{r}
+#' @title polynomical function 2
+#' @description computs (x^3)
+#' @param x some number
+#' @return computes (x^3)
+poly2 <- function(x) {return((x ^ 3))}
+
+# set of points
+x <- seq(-4, 4, length.out = 20)
+y <- poly2(x)
+
+# graph polynomial
+plot(x, y, type = 'l', lwd = 3, col = "#FB7215", las = 1)
+abline(h = 0, v = 0, col = '#888888aa', lwd = 1.5)
+title(main = expression(paste(f(x), ' = ', x^3)))
+
+```
+
+```{r}
+#' @title polynomical function 3
+#' @description computs ((x^2) - 1)((x+3)^3)
+#' @param x some number
+#' @return computes ((x^2) - 1)((x+3)^3)
+poly3 <- function(x) {return((x^2- 1)*((x+3)^3))}
+
+# set of points
+x <- seq(-4, 4, length.out = 20)
+y <- poly3(x)
+
+# graph polynomial
+plot(x, y, type = 'l', lwd = 3, col = "#FB7215", las = 1)
+abline(h = 0, v = 0, col = '#888888aa', lwd = 1.5)
+title(main = expression(paste(f(x), ' = ', (x^2 - 1), (x + 3)^3)))
+
+
+```
+
+```{r}
+#' @title polynomical function 4
+#' @description computs ((x^2) - 1)(x^2 - 9)
+#' @param x some number
+#' @return computes ((x^2) - 1)(x^2 - 9)
+poly4 <- function(x) {return((x^2- 1)*(x^2 - 9))}
+
+# set of points
+x <- seq(-4, 4, length.out = 20)
+y <- poly4(x)
+
+# graph polynomial
+plot(x, y, type = 'l', lwd = 3, col = "#FB7215", las = 1)
+abline(h = 0, v = 0, col = '#888888aa', lwd = 1.5)
+title(main = expression(paste(f(x), ' = ', (x^2 - 1), (x^2 - 9))))
+```
+
+##If Conditionals
+
+```{r}
+# Fill in the following if-else statements. You may (or may not) 
+# have to add or subtract else if or else statements.
+#' @title squish
+#' @description a number less than 0 is replaced by 0 and a number greater than 100 is replaced by 100.
+#' @param x some number
+#' @return number in [0,100] depending on the condition
+squish <- function(x) {
+  if (x < 0) {return(0)}
+  else if (x > 100) {return(100)}
+  else {return(x)}
+}
+
+z<- 100*pi
+squish(z)
+```
+
+###Multiple If's
+
+###Even number
+
+```{r}
+#' @title is given number even?
+#' @description determine whether given number is even
+#' @param x some number
+#' @return logical whether given number is even
+is_even <- function(x) {
+  if (is.numeric(x)) {
+    if (x %% 2 == 0) {
+      return(TRUE)
+    }
+    else {
+      return(FALSE)
+    }
+  }
+  else {
+    return(NA)
+  }
+}
+
+# even number
+is_even(10)
+
+# odd number
+is_even(33)
+
+# not a number
+is_even('a')
+```
+
+###Odd number
+
+```{r}
+#' @title is given number odd?
+#' @description determine whether given number is odd
+#' @param x some number
+#' @return logical whether given number is odd
+is_odd <- function(x) {
+  if (is.numeric(x)) {
+    if (x %% 2 == 1) {
+      return(TRUE)
+    }
+    else {
+      return(FALSE)
+    }
+  }
+  else {
+    return(NA)
+  }
+}
+
+# odd number
+is_odd(1)
+
+# even number
+is_odd(4)
+
+# not a number
+is_odd('a')
+```
+
+```{r}
+#' @title grading function
+#' @description determines letter grade according to the numeric score
+#' @param x numeric score
+#' @return letter grade
+grade <- function(score) {
+  if (score >= 90) {
+    return("A")
+  } else if (score >= 80) {
+    return("B")
+  } else if (score >= 70) {
+    return("C")
+  } else if (score >= 60) {
+    return("D")
+  } else {
+    return("F")
+  }
+}
+
+# grade "A"
+grade(score = 90)
+
+# grade "B"
+grade(score = 89.9999)
+
+# grade "C"
+grade(score = 70.0000001)
+
+# grade "F"
+grade(score = 50)
+```
+
+##Converting Miles to other units
+
+```{r}
+miles2inches <- function(x = 1) {return(x * 63360)}
+miles2feet <- function(x = 1) {return(x * 5280)}
+miles2yards <- function(x = 1) {return(x * 1760)}
+miles2meters <- function(x = 1) {return(x / 0.00062137)}
+miles2kms <- function(x = 1) {return(x / 0.62137)}
+
+miles2inches(2)
+miles2feet(2)
+miles2yards(2)
+miles2meters(2)
+miles2kms(2)
+```
+
+##Using switch()
+
+```{r}
+convert <- function(x, y) {
+  return(switch(y,
+                "km" = x / 0.62137,
+                "in" = x * 63360,
+                "ft" = x * 5280, 
+                "yd" = x * 1760,
+                "m" = x / 0.00062137))
+}
+
+convert(3, "in")
+convert(3, "ft")
+convert(3, "yd")
+convert(3, "m")
+convert(3, "km")
+```
+

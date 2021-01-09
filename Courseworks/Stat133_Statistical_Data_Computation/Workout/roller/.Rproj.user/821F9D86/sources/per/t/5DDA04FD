@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1543742498024.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "765859440",
+    "id" : "5DDA04FD",
+    "lastKnownWriteTime" : 1543435721,
+    "last_content_update" : 1543435721,
+    "path" : "C:/Users/DooDoo/Desktop/Stat133/stat133-fa18/roller/R/roll.R",
+    "project_path" : "R/roll.R",
+    "properties" : {
+        "cursorPosition" : "10,30",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

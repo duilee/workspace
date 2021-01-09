@@ -1,0 +1,131 @@
+## Rolling a device
+
+The package '"roller"' is package for simulating rolling a device a given number of times.
+One can create own device with customized sides and probability, and can simulate rolling
+for desired number of times. Visualization of rolls is also available. 
+
+## Creating a device
+
+To create a device, use the function 'coin()'
+
+> demodev <- device()
+
+By default, device will create a device with side 1 and 2 and with 0.5 probability for each. 
+To create your own device, you need to specify the sides and probabilties with following,
+- sides has at least 2 elemens
+- sides has no duplicate
+- probabilities all have value between 0 and 1
+- probabilities add up to one
+
+More device examples,
+
+> #Regular dice
+> dice <- device(sides = c(1,2,3,4,5,6), prob = rep(1/6, 6))
+>
+> #Regular coin
+> coin <- device(sides = c('head', 'tail'), prob = rep(1/2, 2))
+>
+> #Unfair coin
+> unfaircoin <- device(sides = c('head', 'tail'), prob = c(0.2, 0.8))
+
+Calling the object 'dice', you will get
+
+> dice
+object "device"
+
+  side      prob
+1    1 0.1666667
+2    2 0.1666667
+3    3 0.1666667
+4    4 0.1666667
+5    5 0.1666667
+6    6 0.1666667
+
+## Rolling the device
+
+To roll your device, use 'roll()', with your designated device in the input. 
+
+> roll(demodev)
+
+By default, 'roll()' will your roll your device once and return the result.
+You can specify the number of times you want to roll your device,
+by specifying 'times'
+
+> demoroll <- roll(demodev, times = 10)
+> demoroll
+object "rolls"
+
+ [1] 2 2 1 1 1 1 2 1 2 1
+
+You can also explore related information of your roll result.
+
+- use 'rolls' to extract the rolls result only
+> demoroll$rolls
+ [1] 2 2 1 1 1 1 2 1 2 1
+
+- use 'sides' to examine the sides of given device
+
+> demoroll$sides
+ [1] 1 2
+
+- use 'prob' to examine the probability of each side
+
+> demoroll$prob
+[1] 0.5 0.5
+
+- use 'total' to figure out total number of rolls
+
+> demoroll$total
+[1] 10
+
+## Summary Method for object 'rolls'
+
+- Summary method can be used by 'summary()' with rolls object as input
+
+> summary(demoroll)
+summary "rolls"
+
+  side count prop
+1    1     4  0.4
+2    2     6  0.6
+
+Symmary will provide a datafram containing 3 columns of 'side', 'count' and 'prop'. 
+- side : the sides of the rolled device
+- count : the frequency(count) of each side of the rolled device
+- prop : the relative frequency(proportion) of each side of the rolled device
+
+The dataframe can be accessed by using 'freqs'
+
+> demosummary <- summary(demoroll)
+> demosummary$freqs
+  side count prop
+1    1     4  0.4
+2    2     6  0.6
+
+## Plot Method for object 'rolls'
+
+The plot method for object 'rolls' can be used with function 'plot()' with 'rolls' object as input
+
+> plot(demoroll)
+
+'plot()' will return a barchart of proportions
+
+## Addtional Methods
+
+- An extraction method to extract the value of a given roll, following regular r indexing
+
+> demoroll[2]
+[1] 2
+
+- A replacement method to replace the value of a given roll also follows regular r indexing
+
+> demoroll[2] <- 1
+> demoroll[2]
+[1] 1
+
+- an addition method will add more roll, i.e to add 10 more rolls,
+
+> demoroll + 10
+object "rolls"
+
+ [1] 1 2 1 2 1 1 2 2 2 2 1 2 2 2 1 2 2 1 2 2

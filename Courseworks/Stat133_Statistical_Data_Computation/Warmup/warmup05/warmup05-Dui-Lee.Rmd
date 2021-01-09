@@ -1,0 +1,272 @@
+---
+title: "warmup05-Dui Lee"
+author: "Dui"
+date: "2018³â 10¿ù 13ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+##1. Gaussian Function
+
+```{r}
+#' @title Gaussian Fuction
+#' @description calculate the gaussian distribution of given parameters
+#' @param x some number in the population
+#' @param m mean of the distribution
+#' @param s standard deviation of the distribution
+#' @return computed guassian distribution
+gaussian <- function(m = 0, s = 2, x = 1) {return((1/(s * (2*pi)^0.5))* exp(-0.5*((x - m) / s)^2))}
+
+gaussian()
+
+# compare with dnorm()
+dnorm(x = 1, mean = 0, sd = 2)
+```
+
+```{r}
+# gaussian curve 
+x_values <- seq(from = -4.5, to = 4.5, by = 0.1) 
+y_values <- gaussian(x_values, m = 0, s = 2) 
+plot(x_values, y_values, las = 1, type = "l", lwd = 2)
+```
+
+```{r}
+##using ggplot
+library(ggplot2)
+x <- seq(from = -4.5, to = 4.5, by = 0.1) 
+y1 <- gaussian(x_values, m = 0, s = 0.2^0.5)
+y2 <- gaussian(x_values, m = 0, s = 1)
+y3 <- gaussian(x_values, m = 0, s = 5^0.5)
+y4 <- gaussian(x_values, m = -2, s = 0.5^0.5)
+
+df <- data.frame(x, y1, y2, y3, y4)
+
+ggplot(df, aes(x)) +
+  geom_line(aes(y=y1), colour="blue") +
+  geom_line(aes(y=y2), colour="red") +
+  geom_line(aes(y=y3), colour="brown") +
+  geom_line(aes(y=y4), colour="green") +
+  labs(x = expression(x), y = expression(phi[mu~','~sigma^2](x)))
+
+
+```
+
+```{r}
+##using plot
+#			Normal Distribution PDF
+#range
+x=seq(from = -4.5, to = 4.5, by = 0.1)
+#plot each curve
+plot(x,gaussian(x,m=0,s=sqrt(.2)),type="l",lwd=2,col="blue",main='Normal Distribution PDF',xlim=c(-5,5),ylim=c(0,1),xlab='X',
+ylab=expression(phi[mu~','~sigma^2](x)))
+curve(gaussian(x,m=0,s=1), add=TRUE,type="l",lwd=2,col="red")
+curve(gaussian(x,m=0,s=sqrt(5)), add=TRUE,type="l",lwd=2,col="brown")
+curve(gaussian(x,m=-2,s=sqrt(.5)), add=TRUE,type="l",lwd=2,col="green")
+legend(2, 1, legend=c("¥ì=0, ¥ò©÷=0.2", "¥ì=0, ¥ò©÷=1.0", "¥ì=0, ¥ò©÷=5.0", "¥ì=-2, ¥ò©÷=0.5"), col=c("blue", "red", "brown", "green"), lty = 1, cex = 1)
+```
+
+
+##2. Descriptive Statistics
+
+```{r}
+#' @title descriptive Fuction
+#' @description takes in a numeric vector and returns named vectors of min, q1, median, mean, q3, max, range, iqr and sd
+#' @param x numberic vector, returns error message if not numeric
+#' @return named vectors
+
+descriptive <- function(x, na.rm = FALSE) {
+  if (!is.numeric(x)) {
+    stop("input should be numeric")
+  }
+  if (na.rm) {
+    x <- x[!is.na(x)]
+  }
+    x = c(min(x), quantile(x, probs = 0.25), 
+          median(x), 
+          quantile(x, probs = 0.75), 
+          max(x),
+          range(x),
+          IQR(x),
+          sd(x))
+    names(x) = c("min", "q1", "median", "mean", "q3", "max", "range", "iqr", "sd")
+    x
+  }
+
+
+
+```
+
+```{r}
+# input vectors 
+set.seed(100) 
+x <- rnorm(100) 
+y <- x 
+y[sample(1:100, size = 10)] <- NA
+```
+
+```{r}
+# try your function 
+descriptive(x) 
+descriptive(y) 
+descriptive(y, na.rm = TRUE) 
+descriptive(letters)
+```
+
+##3. Two Given Points
+
+####Distance
+
+```{r}
+#' @title Distance Function
+#' @description calculate the distance of two points given coordinates of two points
+#' @param point1 point 1
+#' @param point2 point 2
+#' @return computed distance of two points
+find_distance <- function(point1, point2) {
+  return((sum((point1 - point2)^2))^0.5)
+}
+
+p1 <- c(0, 0) 
+p2 <- c(1, 1)
+find_distance(p1, p2)
+
+```
+
+
+####Midpoint
+
+```{r}
+#' @title Midpoint Function
+#' @description calculate the midpoint of two points given coordinates of two points
+#' @param point1 point 1
+#' @param point2 point 2
+#' @return computed midpoint of two points
+
+find_midpoint <- function(point1, point2) {
+  return((point1+point2)/2)
+}
+
+p1 <- c(0, 0) 
+p2 <- c(1, 1)
+find_midpoint(p1, p2)
+```
+
+####Slope
+
+```{r}
+#' @title slope Function
+#' @description calculate the slope given coordinates of two points
+#' @param point1 point 1
+#' @param point2 point 2
+#' @return computed slope of linear line going through two given points
+
+find_slope <- function(point1, point2) {
+  x = point2 - point1
+  return(x[2] / x[1])
+}
+
+p1 <- c(0, 0) 
+p2 <- c(1, 1)
+find_slope(p1, p2)
+```
+
+
+####Intercept
+
+```{r}
+#' @title Intercept Function
+#' @description calculate the intercept of the line through two given points
+#' @param point1 point 1
+#' @param point2 point 2
+#' @return computed intercept
+
+find_intercept <- function(point1, point2) {
+  return(point1[2] - find_slope(point1,point2) * point1[1])
+}
+
+p1 <- c(0, 0) 
+p2 <- c(1, 1)
+find_intercept(p1, p2)
+
+```
+
+
+####Line
+
+```{r}
+#' @title Line Function
+#' @description calculate the intercept and slope of the line through two given points
+#' @param point1 point 1
+#' @param point2 point 2
+#' @return a list with intercept and slope (named)
+
+find_line <- function(point1,point2) {
+  intercept <- find_intercept(point1,point2)
+  slope <- find_slope(point1,point2)
+  x = list(intercept, slope)
+  names(x) = c("intercept", "slope")
+  return(x)
+}
+
+p1 <- c(0, 0) 
+p2 <- c(1, 1)
+eq <- find_line(p1, p2)
+eq$intercept 
+eq$slope
+
+```
+
+
+####Information about two given points
+
+```{r}
+#' @title points information Function
+#' @description calculate distance, midpoint, intercept, slope of the two points
+#' @param point1 point 1
+#' @param point2 point 2
+#' @return a list with distance, midpoint, intercept, slope
+
+info_points <- function(point1, point2) {
+  x = list(find_distance(point1, point2), find_midpoint(point1, point2),
+           find_intercept(point1, point2), find_slope(point1, point2))
+  names(x) <- c("distance", "midpoint", "intercept", "slope")
+  return(x)
+}
+
+p1 <- c(-2, 4) 
+p2 <- c(1, 2)
+results <- info_points(p1, p2) 
+results$distance 
+results$midpoint 
+results$intercept 
+results$slope
+```
+
+```{r}
+# change these points and pass them to info_point() 
+p1 <- c(-2, 3) 
+p2 <- c(-4, 5)
+info <- info_points(p1,p2)
+
+plot.new() 
+# depending on your chosen points you may have to set different limits 
+plot.window(xlim = c(-7, 0), ylim = c(0, 7))
+axis(side = 1) 
+axis(side = 2, las = 1) 
+points(p1[1], p1[2], cex = 1.5, col = "#FF8834", pch = 19) 
+points(p2[1], p2[2], cex = 1.5, col = "#FF8834", pch = 19) 
+
+# midpoint (here you should use the midpoint outputs of your function) 
+points(info$midpoint[1], info$midpoint[2], cex = 1.5, pch = "x", col = "#E16868") 
+
+# slope and intercept (here you should use the outputs of your function) 
+abline(a = info$intercept, b = info$slope, col = "#FF883477", lwd = 3)
+info$intercept
+info$slope
+title(main = expression(paste(y, ' = ',  (-1) * x, ' + ', (1) )))
+
+```
+

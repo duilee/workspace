@@ -1,0 +1,122 @@
+---
+title: "Warmup03-Dui-Lee"
+author: "Dui"
+date: "2018³â 9¿ù 16ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Reading the Data Into R
+* the data has a header containing the variable names
+* looks like the values are seperated by a tab
+
+```{r}
+github <- 'https://github.com/ucb-stat133/stat133-fall-2018/' 
+repo <- 'raw/master/data/saratoga.txt' 
+house <- read.table(paste0(github, repo), sep = "\t", header = TRUE)
+```
+
+```{r}
+#structure of the data
+str(house)
+```
+
+##Examine Price
+```{r}
+#summary and histogram of price
+summary(house$Price)
+hist(house$Price)
+```
+```{r}
+# log transformation looks more symmetric.
+log_price <- log(house$Price)
+hist(log_price)
+```
+
+```{r}
+#Five houses are what we call cheap
+cheap <- log_price < 10.5
+sum(cheap)
+```
+```{r}
+# cheap house values
+house$Price[cheap]
+```
+```{r}
+# new house data without rows that contain cheap houses
+rows = cheap
+house = house[!rows,]
+```
+
+## Explore Living Area
+```{r}
+#Summary of the living area
+summary(house$Living.Area)
+```
+```{r}
+#Histogram of the living area
+hist(house$Living.Area)
+```
+```{r}
+#Logarithmic histrogram
+values = log(house$Living.Area)
+hist(values)
+```
+
+```{r}
+# 6.8 in logarithms value cooresponds to roughly 900 in original units of measurement
+exp(6.8)
+```
+
+##Transforming Variables into Factors
+
+```{r}
+#Transform bedroom vector to more factor-friendly environment
+BR = house$Bedrooms
+BR[BR > 5] <- 5
+BR[BR < 2] <- 2
+```
+
+```{r}
+# After factoring Bedrooms, the summary no longer shows the descriptive statistics but it now shows the frequency for each level. 
+BR= factor(BR, labels = c("2- BR", "3 BR", "4 BR", "5+ BR"))
+summary(BR)
+```
+
+##Plotting Price against Living Area
+
+```{r}
+#color vectors
+my_colors = c("aquamarine3", "darkgoldenrod2", "coral2", "mediumorchid3")
+br_colors = my_colors[c(1:4)]
+```
+```{r}
+plot( Price ~ Living.Area, data = house, log = "xy", main = "", xlab = "Living Area (log sq ft)", ylab = "Price (log $)", col = br_colors, pch = 19, cex = 0.4)
+legend("bottomright", fill = my_colors, legend = levels(BR), title = "# Bedrooms", cex = 0.75)
+```
+
+##Number of Fireplaces
+```{r}
+FP = house$Fireplaces
+FP[FP > 1] = 1
+FP = factor(FP, labels = c("None", "At least 1"))
+```
+
+```{r}
+#Price per square foot of the house
+Psq = house$Price / house$Living.Area
+fp_colors = my_colors[c(1,2)]
+```
+
+```{r}
+#Plot price per square foot against price
+plot( Psq ~ Price, data = house, log = "xy", main = "", xlab = "Price (log $)", ylab = "Price per Sq foot (log sq foot)", col = fp_colors, pch = 19, cex = 0.4)
+legend("bottomright", fill = my_colors, legend = levels(FP), title = "Fireplaces", cex = 0.75)
+```
+
+* As seen from the scatter plot, having fireplaces does not particularly make the house more expensive.
+* the relationship between price and price per square foot is positive linear relationship. As price increase, price per square foot increase.
+* One explanation for this result could be that when house is larger there tend to be more optional things built in the house such as swimming pool, garden, playground and etc. Hence it costs extra money than just building the house. So the price per square feet also increase. 

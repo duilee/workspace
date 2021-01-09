@@ -1,0 +1,13 @@
+¡î | OK F W S | Context
+/ |  0       | Tests for count vowels- |  1       | Tests for count vowels\ |  2       | Tests for count vowels| |  3       | Tests for count vowels/ |  4       | Tests for count vowels- |  5       | Tests for count vowels\ |  6       | Tests for count vowels| |  7       | Tests for count vowels/ |  8       | Tests for count vowels¡î |  8       | Tests for count vowels
+/ |  0       | Test for is-hex-color- |  1       | Test for is-hex-color\ |  2       | Test for is-hex-color| |  3       | Test for is-hex-color/ |  4       | Test for is-hex-color- |  5       | Test for is-hex-color\ |  6       | Test for is-hex-color| |  7       | Test for is-hex-color/ |  8       | Test for is-hex-color- |  9       | Test for is-hex-color\ | 10       | Test for is-hex-color| | 11       | Test for is-hex-color/ | 12       | Test for is-hex-color- | 13       | Test for is-hex-color\ | 14       | Test for is-hex-color| | 15       | Test for is-hex-color/ | 16       | Test for is-hex-color¡î | 16       | Test for is-hex-color
+/ |  0       | Tests for minkowski()- |  1       | Tests for minkowski()\ |  2       | Tests for minkowski()| |  3       | Tests for minkowski()/ |  4       | Tests for minkowski()- |  5       | Tests for minkowski()\ |  6       | Tests for minkowski()| |  7       | Tests for minkowski()/ |  8       | Tests for minkowski()¡î |  8       | Tests for minkowski()
+/ |  0       | Test for reverse_chars- |  1       | Test for reverse_chars\ |  2       | Test for reverse_chars| |  3       | Test for reverse_chars/ |  4       | Test for reverse_chars- |  5       | Test for reverse_chars\ |  6       | Test for reverse_chars¡î |  6       | Test for reverse_chars
+
+== Results =====================================================================
+Duration: 0.2 s
+
+OK:       38
+Failed:   0
+Warnings: 0
+Skipped:  0

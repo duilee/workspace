@@ -1,0 +1,97 @@
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+remember
+< _ _ _ _ _ _ _ _ :  >
+< _ e _ e _ _ e _ : e >
+< _ e _ e _ _ e _ : e,d >
+< _ e m e m _ e _ : e,d,m >
+< r e m e m _ e r : e,d,m,r >
+Solved  ['r', 'e', 'm', 'e', 'm', 'b', 'e', 'r']  in  5 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+dedicated
+< _ _ _ _ _ _ _ _ _ :  >
+< _ e _ _ _ _ _ e _ : e >
+< _ e _ _ _ _ _ e _ : e,n >
+< d e d _ _ _ _ e d : e,n,d >
+< d e d _ _ _ _ e d : e,n,d,g >
+< d e d _ _ a _ e d : e,n,d,g,a >
+< d e d _ c a _ e d : e,n,d,g,a,c >
+< d e d i c a _ e d : e,n,d,g,a,c,i >
+Solved  ['d', 'e', 'd', 'i', 'c', 'a', 't', 'e', 'd']  in  8 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+have
+< _ _ _ _ :  >
+< _ _ _ e : e >
+< _ a _ e : e,a >
+< _ a _ e : e,a,d >
+< _ a v e : e,a,d,v >
+< _ a v e : e,a,d,v,g >
+Solved  ['h', 'a', 'v', 'e']  in  6 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+resolve
+< _ _ _ _ _ _ _ :  >
+< _ e _ _ _ _ e : e >
+< r e _ _ _ _ e : e,r >
+< r e _ _ _ _ e : e,r,t >
+< r e _ o _ _ e : e,r,t,o >
+< r e _ o _ _ e : e,r,t,o,d >
+< r e _ o l _ e : e,r,t,o,d,l >
+< r e s o l _ e : e,r,t,o,d,l,s >
+Solved  ['r', 'e', 's', 'o', 'l', 'v', 'e']  in  8 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+struggled
+< _ _ _ _ _ _ _ _ _ :  >
+< _ _ _ _ _ _ _ e _ : e >
+< _ _ _ _ _ _ _ e _ : e,n >
+< _ _ _ _ _ _ _ e d : e,n,d >
+< _ _ _ _ g g _ e d : e,n,d,g >
+< _ _ _ _ g g l e d : e,n,d,g,l >
+< _ _ r _ g g l e d : e,n,d,g,l,r >
+< s _ r _ g g l e d : e,n,d,g,l,r,s >
+< s t r _ g g l e d : e,n,d,g,l,r,s,t >
+Solved  ['s', 't', 'r', 'u', 'g', 'g', 'l', 'e', 'd']  in  9 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+measure
+< _ _ _ _ _ _ _ :  >
+< _ e _ _ _ _ e : e >
+< _ e _ _ _ r e : e,r >
+< _ e _ _ _ r e : e,r,t >
+< _ e _ _ _ r e : e,r,t,o >
+< _ e a _ _ r e : e,r,t,o,a >
+< m e a _ _ r e : e,r,t,o,a,m >
+< m e a s _ r e : e,r,t,o,a,m,s >
+Solved  ['m', 'e', 'a', 's', 'u', 'r', 'e']  in  8 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+proposition
+< _ _ _ _ _ _ _ _ _ _ _ :  >
+< _ _ _ _ _ _ _ _ _ _ _ : e >
+< _ _ o _ o _ _ _ _ o _ : e,o >
+< _ _ o _ o _ i _ i o _ : e,o,i >
+< p _ o p o _ i _ i o _ : e,o,i,p >
+< p _ o p o _ i _ i o n : e,o,i,p,n >
+< p r o p o _ i _ i o n : e,o,i,p,n,r >
+< p r o p o s i _ i o n : e,o,i,p,n,r,s >
+Solved  ['p', 'r', 'o', 'p', 'o', 's', 'i', 't', 'i', 'o', 'n']  in  8 guesses
+
+C:\Users\DooDoo\Desktop\Cs88\wheel>python computer.py
+you , pick your secret word.
+people
+< _ _ _ _ _ _ :  >
+< _ e _ _ _ e : e >
+< _ e _ _ _ e : e,r >
+< _ e _ _ l e : e,r,l >
+< p e _ p l e : e,r,l,p >
+Solved  ['p', 'e', 'o', 'p', 'l', 'e']  in  5 guesses

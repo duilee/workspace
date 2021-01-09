@@ -1,0 +1,51 @@
+Classes ¡®tbl_df¡¯, ¡®tbl¡¯ and 'data.frame':	477 obs. of  15 variables:
+ $ player    : chr  "Al Horford" "Amir Johnson" "Avery Bradley" "Demetrius Jackson" ...
+ $ team      : chr  "BOS" "BOS" "BOS" "BOS" ...
+ $ position  : chr  "C" "PF" "SG" "PG" ...
+ $ height    : int  82 81 74 73 79 69 78 78 79 82 ...
+ $ weight    : int  245 240 180 201 205 185 235 215 225 231 ...
+ $ age       : int  30 29 26 22 31 27 26 21 20 29 ...
+ $ experience: int  9 11 6 0 9 5 4 2 0 6 ...
+ $ college   : chr  "University of Florida" NA "University of Texas at Austin" "University of Notre Dame" ...
+ $ salary    : num  26540100 12000000 8269663 1450000 1410598 ...
+ $ games     : int  68 80 55 5 47 76 72 29 78 78 ...
+ $ minutes   : int  2193 1608 1835 17 538 2569 2335 220 1341 1232 ...
+ $ points    : int  952 520 894 10 262 2199 999 68 515 299 ...
+ $ points3   : int  86 27 108 1 39 245 157 12 46 45 ...
+ $ points2   : int  293 186 251 2 56 437 176 13 146 69 ...
+ $ points1   : int  108 67 68 3 33 590 176 6 85 26 ...
+ - attr(*, "spec")=List of 2
+  ..$ cols   :List of 15
+  .. ..$ player    : list()
+  .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
+  .. ..$ team      : list()
+  .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
+  .. ..$ position  : list()
+  .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
+  .. ..$ height    : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ weight    : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ age       : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ experience: list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ college   : list()
+  .. .. ..- attr(*, "class")= chr  "collector_character" "collector"
+  .. ..$ salary    : list()
+  .. .. ..- attr(*, "class")= chr  "collector_double" "collector"
+  .. ..$ games     : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ minutes   : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ points    : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ points3   : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ points2   : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  .. ..$ points1   : list()
+  .. .. ..- attr(*, "class")= chr  "collector_integer" "collector"
+  ..$ default: list()
+  .. ..- attr(*, "class")= chr  "collector_guess" "collector"
+  ..- attr(*, "class")= chr "col_spec"

@@ -1,0 +1,210 @@
+---
+title: "Lab02"
+author: "Dui Lee"
+date: "2018³â 9¿ù 5ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+rdata <- "https://github.com/ucb-stat133/stat133-fall-2018/raw/master/data/nba2018-salary-points.RData"
+download.file(url = rdata, destfile = 'nba2018-salary-points.RData')
+data <- load('nba2018-salary-points.RData')
+```
+
+
+## Vector and other data structures
+
+```{r}
+length(age)
+head(age)
+tail(age)
+summary(age)
+house['Bedrooms']
+
+```
+
+```{r}
+length(experience)
+head(experience)
+tail(experience)
+summary(experience)
+```
+
+
+```{r}
+length(player)
+head(player)
+tail(player)
+summary(player)
+```
+
+* all chosen objects have same length
+
+```{r}
+sum(is.na(age))
+sum(is.na(experience))
+sum(is.na(player))
+```
+* No objects contain missing value
+```{r}
+class(age)
+class(experience)
+class(player)
+```
+ * classes of age, experience and player are integer, character and character
+ * You can use str or class to find out if the object is a vector
+ * You can use mode to find out the data type of the object
+ 
+##Manipulating vectors
+ 
+```{r}
+four <- head(player, n = 4)
+four
+# four[1] returns first player
+four[1]
+# four[0] doesn't return a player name as index is wrong
+four[0]
+# four[-1] returns everything except for item 1
+four[-1]
+# four[-c(1,2,3)] returns everything except for item 1,2,3 
+four[-c(1,2,3)]
+# four[5] returns no value since no item at index 5
+four[5]
+# four[c(1,2,2,3,3,3)] returns value of following index
+four[c(1,2,2,3,3,3)]
+```
+ 
+```{r, eval=FALSE}
+#all the even elements in player
+player[seq.int(2, length(player), 2)]
+#all the odd elements in salary
+salary[seq.int(1, length(salary), 2)]
+#all multiples of 5 (e.g. 5, 10, 15, etc) of team
+team[seq.int(5, length(team), 5)]
+#elements in positions 10, 20, 30, 40, etc of scored
+scored[seq.int(10, length(scored), 10)]
+#all the even elements in team but this time in reverse order
+team[seq.int(length(team), 1, -1)]
+```
+
+##Logical Subsetting
+
+```{r}
+# AND
+TRUE & TRUE
+TRUE & FALSE
+FALSE & FALSE
+
+# OR
+TRUE | TRUE
+TRUE | FALSE
+FALSE | FALSE
+
+# NOT
+!TRUE
+!FALSE
+```
+
+```{r}
+#players in position Center, of Warriors (GSW)
+player[team == 'GSW' & position == 'C']
+#players of both GSW (warriors) and LAL (lakers)
+player[team == 'GSW' & team == 'LAL']
+#players in positions Shooting Guard and Point Guards, of Lakers (LAL)
+player[(position == 'SG' | position == 'PG') & team == 'LAL' ]
+#subset Small Forwards of GSW and LAL
+sf <- player[position == 'SF' & (team == 'GSW' | team == 'LAL')]
+sf
+#name of the player with largest salary
+player[salary == max(salary)]
+#name of the player with smallest salary
+player[salary == min(salary)]
+```
+```{r}
+#name of the player with largest number of scored points
+total <- points1 + points2*2 + points3*3
+names(total) <- player
+player[total == max(total)]
+#salary of the player with largest number of points
+salary[player == player[total == max(total)]]
+```
+```{r}
+#largest salary of all Centers
+max(salary[position == 'C'])
+#team of the player with the largest number of scored points
+team[player == player[total == max(total)]]
+#name of the player with the largest number of 3-pointers
+player[ points3 == max(points3)]
+```
+```{r}
+player[scored == max(scored)]
+```
+
+##Subsetting with Character Vectors
+```{r}
+names(player)
+warriors_player <- player[team == 'GSW']
+warriors_salary <- salary[team == 'GSW']
+warriors_points <- scored[team == 'GSW']
+names(warriors_salary) = warriors_player
+
+warriors_salary["Andre Iguodala"]
+
+warriors_salary[c("Stephen Curry", "Kevin Durant")]
+
+```
+
+##Some plotting
+
+```{r}
+plot(warriors_points, warriors_salary)
+text(warriors_points, warriors_salary, labels = warriors_player)
+```
+
+```{r}
+log_scored <- log(warriors_points)
+log_salary <- log(warriors_salary)
+
+plot(log_scored, log_salary)
+text(log_scored, log_salary, labels = warriors_player)
+```
+
+## Recycling
+
+```{r}
+#the salaries in millions of dollars
+salary_millions = salary / 1000000
+#Take the values in points1, points2, and points3 and figure out to create a new vector scored_points that gives you the same values of points
+scored_points = points1 + points2*2 + points3*3
+```
+
+
+##Manipulating Factors
+
+```{r}
+#positions of Warriors
+position_fac <- factor(position[team == 'GSW'])
+table(position_fac)
+```
+
+```{r}
+#positions of players with salaries > 15 millions
+factor(position[salary > 15000000])
+#frequencies (counts) of positions with salaries > 15 millions
+table(factor(position[salary > 15000000]))
+```
+```{r}
+#relative frequencies (proportions) of ¡®SG¡¯ (Shooting Guards) in each team
+prop.table(table(factor(team[position == 'SG'])))
+```
+
+##More Plots
+```{r}
+plot(scored, salary, col=position_fac, pch = 0:5, cex = 1.5, xlab='Player Salary', ylab='Points Scored')
+```
+
+

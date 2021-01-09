@@ -1,0 +1,93 @@
+---
+title: "HW01 - Dui Lee"
+author: "Dui Lee"
+date: "2018³â 9¿ù 2ÀÏ"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Game of Thrones
+
+#### Jon Snow
+
+>"I never met my mother. My father wouldn't even tell me her name. I don't know if she's living or dead. I don't know if she's a noblewoman or a fisherman's wife or a whore..."
+
+![](https://vignette.wikia.nocookie.net/gameofthrones/images/a/a5/Profile-JonSnow-707.png)
+
+Category | Detail
+--------------|-----------
+Date of Birth | 281 AC
+Status | Alive
+Age | 22 in Season 7
+Titles | Warden of the North
+Culture | Northmen
+Religion | Old Gods of the Forest
+
+## Cooking Recipe
+
+#### Salted butter chocolate chunk shortbread
+**Ingredients**:
+
+* 1 cup plus 2 tablespoons (9 ounces or 255 grams) salted butter, cold, cut into small pieces
+* 1/2 cup (100 grams) granulated sugar
+* 1/4 cup (50 grams) light brown sugar
+* 1 teaspoon (5 ml) vanilla extract
+* 2 1/4 cups (295 grams) all-purpose flour
+* 6 ounces (170 grams) semi- or bittersweet dark chocolate, chopped (you want chunks, not thin shards of chocolate)
+* 1 large egg
+* Demerara, turbinado, raw, or sanding sugar, for rolling
+* Flaky sea salt for sprinkling
+
+**Special Kitchen Tools**:
+
+* Sharp serrated knife
+* Parchment paper
+* Electric mixer
+
+**Steps**:
+
+1. Beat the butter, granulated and brown sugars, and vanilla with an electric mixer until light and fluffy, scraping down bowl as needed. Add flour, and mix just until combined. Add chocolate chunks, mix just until incorporated.
+2. Divide between two sheets of parchment paper, waxed paper, or plastic wrap and use your hands to form the dough halves into log shapes about 2 to 2 1/4 inches in diameter. Chill until totally firm, about 2 hours.
+3. When you¡¯re ready to bake the cookies, heat your oven to 350¡ÆF. Line one or two large baking sheets with parchment paper. Lightly beat the egg and open up your chilled cookies logs to brush it over the sides. Sprinkle the coarse sugar on the open paper or plastic wrap and roll the logs into it, coating them.
+4. Using a sharp serrated knife, cut logs into 1/2-inch thick rounds. Bake for 12 to 15 minutes, or until the edges are just beginning to get golden brown. Let cool slightly before transferring to the cookies you don¡¯t eat immediately to wire racks to cool.  
+
+![](https://c1.staticflickr.com/5/4633/39374555221_e735fd125d_m.jpg)
+
+**No Special Season for this recipe**
+
+**Variations to the recipe**:
+
+- You can use unsalted butter and add 3/4 teaspoon of salt instead
+- Feel free to add any other chunks such as almonds, dried fruits, etc. of your choice
+
+## Quadratic Equation
+
+In algebra, a quadratic equation (from the Latin quadratus for "square") is any equation having the form
+\[ ax^2 + bx + c \]
+If a = 0, then the equation is linear, not quadratic. The numbers a, b, and c are the coefficients of the equation, and may be distinguished by calling them, respectively, the quadratic coefficient, the linear coefficient and the constant or free term.
+
+**Formula for the roots of the general quadratic equation**:
+\[x = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
+
+**The derivation of the solution**:
+
+\begin{align*} 
+ax^2 + bx + c &= 0\\
+4a^2x^2 + 4abx + 4ac &= 0\\
+4a^2x^2 + 4abx &= -4ac\\
+(2ax + b)^2 &= b^2 - 4ac\\
+2ax + b &= \pm\sqrt{b^2 - 4ac}\\
+2ax &= -b \pm\sqrt{b^2 - 4ac}\\
+x &= \frac{-b\pm\sqrt{b^2-4ac}}{2a}\\
+\end{align*}
+
+## Comments and Reflections
+
+- I personally enjoyed this exercise as I was learning new things about R Markdown. The most troubling part for me was finding a way to align equal signs of the equations in 'Quadratic Equations'. 
+It was my first time working with Markdown, I think this is very useful and straightforward way to present reports, I am excited to see how codings are incorporated into this. Upon working on this assignment, I had to consult few tutorials on R Markdown, but did not get any help from other people. It took me about 2 hours to complete this HW. The most consuming part was writing out the equations. 
+
+
+
