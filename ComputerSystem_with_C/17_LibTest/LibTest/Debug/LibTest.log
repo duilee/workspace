@@ -1,0 +1,14 @@
+﻿Build started 2020-11-04 오후 2:47:12.
+     1>Project "c:\Users\DooDoo\documents\visual studio 2013\Projects\LibTest\LibTest\LibTest.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (LibTest.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt LibTest.c
+         LibTest.c
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"c:\users\doodoo\documents\visual studio 2013\Projects\LibTest\Debug\17_LibTest.lib" /NOLOGO Debug\LibTest.obj
+         LibTest.vcxproj -> c:\users\doodoo\documents\visual studio 2013\Projects\LibTest\Debug\17_LibTest.lib
+     1>Done Building Project "c:\Users\DooDoo\documents\visual studio 2013\Projects\LibTest\LibTest\LibTest.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.73

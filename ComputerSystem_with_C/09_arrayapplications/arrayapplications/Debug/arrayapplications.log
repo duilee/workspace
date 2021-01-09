@@ -1,0 +1,32 @@
+﻿Build started 10/12/2020 9:07:37 PM.
+     1>Project "c:\Users\DooDoo\documents\visual studio 2013\Projects\arrayapplications\arrayapplications\arrayapplications.vcxproj" on node 2 (Build target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (arrayapplications.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt arrayapplication.c bubblesort.c exercise1.c exercise2.c lookup.c selectionbubblesort.c selectionsort.c snail.c zigzag.c
+         zigzag.c
+         snail.c
+         selectionsort.c
+         selectionbubblesort.c
+         lookup.c
+         exercise2.c
+         exercise1.c
+         bubblesort.c
+         arrayapplication.c
+     1>c:\users\doodoo\documents\visual studio 2013\projects\arrayapplications\arrayapplications\arrayapplication.c(12): warning C4013: 'exercise2' undefined; assuming extern returning int
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\doodoo\documents\visual studio 2013\Projects\arrayapplications\Debug\09_arrayapplications.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"c:\users\doodoo\documents\visual studio 2013\Projects\arrayapplications\Debug\09_arrayapplications.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\doodoo\documents\visual studio 2013\Projects\arrayapplications\Debug\09_arrayapplications.lib" /MACHINE:X86 Debug\arrayapplication.obj
+         Debug\bubblesort.obj
+         Debug\exercise1.obj
+         Debug\exercise2.obj
+         Debug\lookup.obj
+         Debug\selectionbubblesort.obj
+         Debug\selectionsort.obj
+         Debug\snail.obj
+         Debug\zigzag.obj
+         arrayapplications.vcxproj -> c:\users\doodoo\documents\visual studio 2013\Projects\arrayapplications\Debug\09_arrayapplications.exe
+     1>Done Building Project "c:\Users\DooDoo\documents\visual studio 2013\Projects\arrayapplications\arrayapplications\arrayapplications.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.77
