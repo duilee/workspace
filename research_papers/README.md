@@ -14,5 +14,5 @@
   * Illustrated GPT-3 by Jay Alammar [link](http://jalammar.github.io/how-gpt3-works-visualizations-animations/)
   
 - The Lottery Ticket Hypothesis: FINDING SPARSE, TRAINABLE NEURAL NETWORKS
-  * Review on the paper +  Learning both Weights and Connections for Efficient Neural Networks [link] (https://seing.tistory.com/47)
-  * Youtube review [link] (https://www.youtube.com/watch?v=dkNmYu610r8)
+  * Review on the paper +  Learning both Weights and Connections for Efficient Neural Networks [link](https://seing.tistory.com/47)
+  * Youtube review [link](https://www.youtube.com/watch?v=dkNmYu610r8)
