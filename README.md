@@ -1,7 +1,7 @@
 # :palm_tree: Welcome
 
 This repository comprises of the my works in and out of school.  
-With descriptions as follow. More at github.com/duilee
+With descriptions as follow. More at [github.com/duilee](github.com/duilee)
 
 -----
 
