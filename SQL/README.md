@@ -140,3 +140,13 @@ float: decimal(), double(), float()
 	LIMIT 5, 1 // row 6  
 	LIMIT N, 1 // row n+1  
 	LIMIT 1 OFFSET N // row n+1  
+
+### _**NOTES**_
+> For just a join, use right after the FROM phrase  
+FROM ( SELECT ~~  
+	FROM ~~  
+	GROUP BY ~~  
+	) t INNER JOIN some_table ON some_index = some_index
+
+> Set multiple conditions on ORDER BY by specifying which order to sort by after the column name  
+ORDER BY some_column1 DESC, some_column2 ASC
