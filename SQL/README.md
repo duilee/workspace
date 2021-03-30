@@ -142,11 +142,13 @@ float: decimal(), double(), float()
 	LIMIT 1 OFFSET N // row n+1  
 
 ### _**NOTES**_
-> For just a join, use right after the FROM phrase  
+> **For just a join, use right after the FROM phrase**  
 FROM ( SELECT ~~  
 	FROM ~~  
 	GROUP BY ~~  
 	) t INNER JOIN some_table ON some_index = some_index
 
-> Set multiple conditions on ORDER BY by specifying which order to sort by after the column name  
+> **Set multiple conditions on ORDER BY by specifying which order to sort by after the column name**  
 ORDER BY some_column1 DESC, some_column2 ASC
+
+> **Can't perform group by and join on the same sub query**
