@@ -16,3 +16,7 @@
 - The Lottery Ticket Hypothesis: FINDING SPARSE, TRAINABLE NEURAL NETWORKS
   * Review on the paper +  Learning both Weights and Connections for Efficient Neural Networks [link](https://seing.tistory.com/47)
   * Youtube review [link](https://www.youtube.com/watch?v=dkNmYu610r8)
+
+- Graph Attention Networks
+  * Reveiw video on Youtube [link](https://www.youtube.com/watch?v=NSjpECvEf0Y)
+  * blog post on towardsdatascience [link](https://towardsdatascience.com/an-introduction-to-graph-neural-network-gnn-for-analysing-structured-data-afce79f4cfdc)
