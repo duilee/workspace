@@ -152,3 +152,14 @@ FROM ( SELECT ~~
 ORDER BY some_column1 DESC, some_column2 ASC
 
 > **Can't perform group by and join on the same sub query**
+
+> **SELECT SubQuery is useful**  
+SELECT c.company_code, c.founder,  
+       (SELECT COUNT(DISTINCT(lead_manager_code))  
+        FROM lead_manager  
+        WHERE company_code = c.company_code),  
+       (SELECT COUNT(DISTINCT(senior_manager_code))  
+        FROM senior_manager  
+        WHERE company_code = c.company_code),  
+FROM company AS c  
+ORDER BY c.company_code  
