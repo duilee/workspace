@@ -169,8 +169,7 @@ SELECT
       MIN(CASE WHEN occupation = "Doctor" THEN name ELSE NULL END) doctor,  
       MIN(CASE WHEN occupation = "Professor" THEN name ELSE NULL END) professor,  
       MIN(CASE WHEN occupation = "Singer" THEN name ELSE NULL END) singer,  
-      MIN(CASE WHEN occupation = "Actor" THEN name ELSE NULL END) actor  
-      
+      MIN(CASE WHEN occupation = "Actor" THEN name ELSE NULL END) actor    
 FROM(SELECT  
           occupation,  
           name,  
