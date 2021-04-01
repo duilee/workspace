@@ -164,7 +164,7 @@ SELECT c.company_code, c.founder,
 FROM company AS c  
 ORDER BY c.company_code  
 
-> **CASE LINE can be use full when needed**, aggregate function can be anything for below
+> **CASE LINE can be use full when needed**, aggregate function can be anything for below  
 SELECT  
       MIN(CASE WHEN occupation = "Doctor" THEN name ELSE NULL END) doctor,  
       MIN(CASE WHEN occupation = "Professor" THEN name ELSE NULL END) professor,  
