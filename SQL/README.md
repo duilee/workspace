@@ -163,3 +163,18 @@ SELECT c.company_code, c.founder,
         WHERE company_code = c.company_code),  
 FROM company AS c  
 ORDER BY c.company_code  
+
+> **CASE LINE can be use full when needed**, aggregate function can be anything for below
+SELECT  
+      MIN(CASE WHEN occupation = "Doctor" THEN name ELSE NULL END) doctor,  
+      MIN(CASE WHEN occupation = "Professor" THEN name ELSE NULL END) professor,  
+      MIN(CASE WHEN occupation = "Singer" THEN name ELSE NULL END) singer,  
+      MIN(CASE WHEN occupation = "Actor" THEN name ELSE NULL END) actor  
+      
+FROM(SELECT  
+          occupation,  
+          name,  
+          ROW_NUMBER() OVER (PARTITION BY occupation ORDER by name) AS rn  
+    FROM occupations) t  
+GROUP BY rn  
+ORDER BY rn  
