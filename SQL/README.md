@@ -177,3 +177,15 @@ FROM(SELECT
     FROM occupations) t  
 GROUP BY rn  
 ORDER BY rn  
+
+> **also utilize multiple queries to output multiple rows**  
+SELECT city  
+     , LENGTH(city) AS len_city  
+FROM station  
+ORDER BY len_city, city  
+LIMIT 1;  
+SELECT city  
+     , LENGTH(city) AS len_city  
+FROM station  
+ORDER BY len_city DESC, city  
+LIMIT 1   
