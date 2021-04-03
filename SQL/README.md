@@ -189,3 +189,13 @@ SELECT city
 FROM station  
 ORDER BY len_city DESC, city  
 LIMIT 1   
+
+> **Subquery with in select or case phrase**  
+SELECT N,  
+     CASE  
+         WHEN P IS NULL THEN "Root"  
+         WHEN N IN (SELECT DISTINCT P FROM bst) THEN "Inner"  
+         ELSE "Leaf"  
+     END  
+FROM bst  
+ORDER BY N  
