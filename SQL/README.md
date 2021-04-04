@@ -199,3 +199,19 @@ SELECT N,
      END  
 FROM bst  
 ORDER BY N  
+
+> **Using two queries with INNER JOIN** check ROW_NUMBER() OVER function   
+SELECT start_date, end_date  
+FROM(      
+    SELECT start_date  
+         , ROW_NUMBER() OVER (ORDER BY start_date) rnk  
+    FROM Projects  
+    WHERE start_date NOT IN (SELECT DISTINCT end_date FROM Projects)  
+) s_data  
+ INNER JOIN (  
+ SELECT end_date  
+         , ROW_NUMBER() OVER (ORDER BY end_date) rnk  
+    FROM Projects  
+    WHERE end_date NOT IN (SELECT DISTINCT start_date FROM Projects)  
+ ) e_data ON s_data.rnk = e_data.rnk  
+ORDER BY DATEDIFF(end_date, start_date), start_date  
