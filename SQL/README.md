@@ -215,3 +215,22 @@ FROM(
     WHERE end_date NOT IN (SELECT DISTINCT start_date FROM Projects)  
  ) e_data ON s_data.rnk = e_data.rnk  
 ORDER BY DATEDIFF(end_date, start_date), start_date  
+
+
+> **ROW NUMBER() OVER (PARTITION BY) is the key...**  
+SELECT id  
+     , age  
+     , coins_needed 
+     , power  
+FROM(  
+    SELECT w.id  
+         , wp.age  
+         , w.coins_needed  
+         , w.power  
+         , ROW_NUMBER() OVER (PARTITION BY w.code, w.power ORDER BY coins_needed) rn  
+    FROM Wands w  
+    LEFT JOIN Wands_Property wp on w.code = wp.code  
+    WHERE wp.is_evil = 0  
+) t  
+WHERE rn = 1  
+ORDER BY power DESC, age DESC  
