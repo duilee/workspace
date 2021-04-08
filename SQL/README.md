@@ -234,3 +234,8 @@ FROM(
 ) t  
 WHERE rn = 1  
 ORDER BY power DESC, age DESC  
+
+> **Using regexp in SQL**  
+SELECT DISTINCT CITY  
+FROM STATION  
+WHERE CITY REGEXP '^[^aeiou]|[^aeiou]$'  
