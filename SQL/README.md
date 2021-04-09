@@ -252,3 +252,11 @@ WHERE CASE
             WHEN MOD(n, 2) = 1 THEN row_num = (n+1)/2  
             ELSE row_num IN (n/2, (n/2)+1)  
       END  
+> ** Same Problem with Percent rank**
+SELECT ROUND(AVG(LAT_N), 4)  
+FROM(  
+      SELECT LAT_N  
+           , PERCENT_RANK() OVER (ORDER BY LAT_N) p_rn  
+      FROM Station  
+)t  
+WHERE p_rn = 0.5  
