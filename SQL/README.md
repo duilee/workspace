@@ -260,3 +260,9 @@ FROM(
       FROM Station  
 )t  
 WHERE p_rn = 0.5  
+
+> **Using DENSE_RANK()**  
+SELECT Score  
+     , DENSE_RANK() OVER (ORDER BY Score DESC) AS 'Rank'  
+FROM Scores  
+ORDER BY Score DESC  
