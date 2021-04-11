@@ -267,7 +267,7 @@ SELECT Score
 FROM Scores  
 ORDER BY Score DESC  
 
-> **https://leetcode.com/problems/trips-and-users** 
+> **https://leetcode.com/problems/trips-and-users**  
 SELECT request_at AS Day  
      , ROUND(cancel_count / total_count, 2) AS 'Cancellation Rate'  
 FROM (SELECT request_at  
