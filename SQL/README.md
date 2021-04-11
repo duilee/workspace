@@ -266,3 +266,15 @@ SELECT Score
      , DENSE_RANK() OVER (ORDER BY Score DESC) AS 'Rank'  
 FROM Scores  
 ORDER BY Score DESC  
+> **https://leetcode.com/problems/trips-and-users** 
+SELECT request_at AS Day  
+     , ROUND(cancel_count / total_count, 2) AS 'Cancellation Rate'  
+FROM (SELECT request_at  
+         , SUM(CASE WHEN t.status != "completed" THEN 1 ELSE 0 END) cancel_count  
+         , COUNT(*) total_count  
+    FROM trips t  
+        INNER JOIN users uc ON t.client_id = uc.users_id  
+        INNER JOIN users ud ON t.driver_id = ud.users_id  
+    WHERE uc.Banned = "No" AND ud.Banned = "No" AND t.request_at BETWEEN "2013-10-01" AND "2013-10-03"  
+    GROUP BY request_at) t  
+
