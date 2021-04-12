@@ -278,4 +278,17 @@ FROM (SELECT request_at
         INNER JOIN users ud ON t.driver_id = ud.users_id  
     WHERE uc.Banned = "No" AND ud.Banned = "No" AND t.request_at BETWEEN "2013-10-01" AND "2013-10-03"  
     GROUP BY request_at) t  
+    
+> **https://leetcode.com/problems/exchange-seats**  
+SELECT (CASE  
+            WHEN id % 2 = 1 AND id != total_count THEN id + 1  
+            WHEN id % 2 = 1 AND id = total_count THEN id  
+            ELSE id-1 END  
+       ) AS id,  
+       student  
+FROM (SELECT id  
+           , student  
+           , COUNT(*) OVER () AS total_count  
+      FROM seat) t  
+ORDER BY id  
 
