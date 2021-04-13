@@ -291,4 +291,14 @@ FROM (SELECT id
            , COUNT(*) OVER () AS total_count  
       FROM seat) t  
 ORDER BY id  
-
+> **Another partition problem...**
+SELECT d.Name AS "Department"  
+     , t.Employee  
+     , t.Salary  
+FROM (SELECT DENSE_RANK() OVER (PARTITION BY DepartmentId ORDER BY Salary DESC) 'rank'  
+           , Name as 'Employee'  
+           , Salary  
+           , DepartmentID  
+      FROM Employee) t  
+INNER JOIN Department d on t.DepartmentId = d.Id  
+WHERE t.rank = 1  
