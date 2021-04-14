@@ -291,6 +291,7 @@ FROM (SELECT id
            , COUNT(*) OVER () AS total_count  
       FROM seat) t  
 ORDER BY id  
+
 > **Another partition problem...**
 SELECT d.Name AS "Department"  
      , t.Employee  
@@ -302,3 +303,11 @@ FROM (SELECT DENSE_RANK() OVER (PARTITION BY DepartmentId ORDER BY Salary DESC) 
       FROM Employee) t  
 INNER JOIN Department d on t.DepartmentId = d.Id  
 WHERE t.rank = 1  
+
+> **LEAD FUNCTION**  
+SELECT DISTINCT t.first AS 'ConsecutiveNums'  
+FROM (SELECT num AS 'first'  
+           , LEAD(num, 1) OVER (ORDER BY id) AS 'second'  
+           , LEAD(num, 2) OVER (ORDER BY id) AS 'third'  
+      FROM Logs) t   
+WHERE t.first = t.second AND t.second = t.third  
