@@ -311,3 +311,16 @@ FROM (SELECT num AS 'first'
            , LEAD(num, 2) OVER (ORDER BY id) AS 'third'  
       FROM Logs) t   
 WHERE t.first = t.second AND t.second = t.third  
+
+> **SQL Function + another dense rank...**
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT  
+BEGIN  
+  RETURN (  
+      # Write your MySQL query statement below.  
+      SELECT DISTINCT Salary  
+      FROM (SELECT DENSE_RANK() OVER (ORDER BY Salary DESC) AS 'Rank'  
+                 , Salary  
+              FROM Employee) t   
+      WHERE t.Rank = N  
+  );  
+END  
