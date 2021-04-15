@@ -20,3 +20,7 @@
 - Graph Attention Networks
   * Reveiw video on Youtube [link](https://www.youtube.com/watch?v=NSjpECvEf0Y)
   * blog post on towardsdatascience [link](https://towardsdatascience.com/an-introduction-to-graph-neural-network-gnn-for-analysing-structured-data-afce79f4cfdc)
+
+- Bert4Rec 
+  * blog post [link](https://22-22.tistory.com/78)
+  * TL;DR used bert model to make recommendations
