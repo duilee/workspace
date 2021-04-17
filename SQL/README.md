@@ -324,3 +324,12 @@ BEGIN
       WHERE t.Rank = N  
   );  
 END  
+
+> ** Using concat and two queries [link](https://www.hackerrank.com/challenges/the-pads)**  
+SELECT concat(name, '(', substr(occupation, 1, 1), ')')  
+FROM occupations  
+ORDER BY name;  
+SELECT concat("There are a total of ", COUNT(name), " ", lower(occupation), "s.")  
+FROM occupations  
+GROUP BY occupation  
+ORDER BY COUNT(name)   
