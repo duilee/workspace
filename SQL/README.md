@@ -332,4 +332,11 @@ ORDER BY name;
 SELECT concat("There are a total of ", COUNT(name), " ", lower(occupation), "s.")  
 FROM occupations  
 GROUP BY occupation  
-ORDER BY COUNT(name)   
+ORDER BY COUNT(name)
+
+> ** Using POWER(), and ABS()**  
+SELECT ROUND(ABS(MIN(lat_n) - MAX(lat_n)) + ABS(MIN(long_w) - MAX(long_w)), 4)  
+FROM station  
+/*  
+For power its POWER(num, power)  
+*/  
