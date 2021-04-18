@@ -340,3 +340,12 @@ FROM station
 /*  
 For power its POWER(num, power)  
 */  
+
+> **INNER JOING not using equal sign for on**  
+SELECT (CASE   
+        WHEN g.grade >= 8 THEN s.name ELSE 'NULL' END)  
+     , g.grade  
+     , s.marks  
+FROM Students s  
+INNER JOIN grades g ON s.marks <= g.max_mark AND s.marks >= g.min_mark   
+ORDER BY g.grade DESC, s.name ASC  
