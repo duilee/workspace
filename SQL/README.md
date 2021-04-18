@@ -325,7 +325,7 @@ BEGIN
   );  
 END  
 
-> ** Using concat and two queries [link](https://www.hackerrank.com/challenges/the-pads)**  
+> **Using concat and two queries [link](https://www.hackerrank.com/challenges/the-pads)**  
 SELECT concat(name, '(', substr(occupation, 1, 1), ')')  
 FROM occupations  
 ORDER BY name;  
@@ -334,7 +334,7 @@ FROM occupations
 GROUP BY occupation  
 ORDER BY COUNT(name)
 
-> ** Using POWER(), and ABS()**  
+> **Using POWER(), and ABS()**  
 SELECT ROUND(ABS(MIN(lat_n) - MAX(lat_n)) + ABS(MIN(long_w) - MAX(long_w)), 4)  
 FROM station  
 /*  
