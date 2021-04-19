@@ -349,3 +349,15 @@ SELECT (CASE
 FROM Students s  
 INNER JOIN grades g ON s.marks <= g.max_mark AND s.marks >= g.min_mark   
 ORDER BY g.grade DESC, s.name ASC  
+
+> **MEDIAN AGAIN... attention to CASE in WHERE, and COUNT(*) OVER () to make column for all count**
+SELECT ROUND(AVG(lat_n), 4)  
+FROM(SELECT ROW_NUMBER() OVER (ORDER BY lat_n) rn  
+          , COUNT(*) OVER () n  
+          , lat_n  
+     FROM station) t  
+WHERE CASE  
+        WHEN MOD(n, 2) = 1 THEN rn = (n+1)/2  
+        ELSE rn IN (n/2, (n/2)+1)  
+        END  
+	
