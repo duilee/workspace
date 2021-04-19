@@ -360,4 +360,16 @@ WHERE CASE
         WHEN MOD(n, 2) = 1 THEN rn = (n+1)/2  
         ELSE rn IN (n/2, (n/2)+1)  
         END  
-	
+
+> **Using three inner with having+count** www.hackerrank.com/challenges/full-score/problem  
+SELECT h.hacker_id  
+     , h.name  
+FROM Submissions s  
+INNER JOIN challenges ch ON s.challenge_id = ch.challenge_id  
+INNER JOIN difficulty d ON ch.difficulty_level = d.difficulty_level  
+INNER JOIN hackers h ON s.hacker_id = h.hacker_id  
+WHERE s.score = d.score  
+GROUP BY h.hacker_id, h.name  
+HAVING COUNT(s.hacker_id) > 1  
+ORDER BY COUNT(s.hacker_id) DESC, h.hacker_id ASC  
+
