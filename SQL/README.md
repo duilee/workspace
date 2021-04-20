@@ -373,3 +373,11 @@ GROUP BY h.hacker_id, h.name
 HAVING COUNT(s.hacker_id) > 1  
 ORDER BY COUNT(s.hacker_id) DESC, h.hacker_id ASC  
 
+> **INNER JOIN and Condition** www.hackerrank.com/challenges/placements/problem  
+SELECT s.name  
+FROM friends f   
+INNER JOIN students s ON f.id = s.id  
+INNER JOIN packages p1 ON f.id = p1.id  
+INNER JOIN packages p2 ON f.friend_id = p2.id  
+WHERE p1.salary < p2.salary  
+ORDER BY p2.salary  
