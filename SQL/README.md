@@ -381,3 +381,15 @@ INNER JOIN packages p1 ON f.id = p1.id
 INNER JOIN packages p2 ON f.friend_id = p2.id  
 WHERE p1.salary < p2.salary  
 ORDER BY p2.salary  
+
+> **Top 3 salaries from deparment**
+SELECT Department  
+     , Employee  
+     , Salary  
+FROM(SELECT d.name AS 'Department'  
+          , e.name AS 'Employee'  
+          , e.Salary AS 'Salary'  
+          , DENSE_RANK() OVER (PARTITION BY e.DepartmentID ORDER BY e.Salary DESC) AS 'ranks'  
+     FROM Employee e  
+     INNER JOIN Department d ON e.DepartmentId = d.Id) t  
+WHERE ranks <= 3  
