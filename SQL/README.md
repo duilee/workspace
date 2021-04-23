@@ -398,3 +398,13 @@ WHERE ranks <= 3
 SELECT name  
 FROM employees  
 WHERE id NOT IN (SELECT managerId FROM employees WHERE managerId IS NOT NULL)  
+
+> **USING CREATE TABLE**
+-- Modify only this SQLite create table statement and nothing else  
+CREATE TABLE users_roles (  
+  userId INTEGER NOT NULL,  
+  roleId INTEGER NOT NULL,  
+  FOREIGN KEY(userId) REFERENCES users(id),  
+  FOREIGN KEY(roleId) REFERENCES roles(id),  
+  PRIMARY KEY(userId, roleId)  
+);  
