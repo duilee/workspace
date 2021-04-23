@@ -5,9 +5,9 @@ def minimumSwaps(arr):
     for i in range(len(arr)):
         if (arr[i] != (i + 1)):
             t = i;
-            while (arr[t] != (i + 1)):
+            while (arr[t] != (i + 1)): # find the number corresponding to the right order
                 t += 1
-            arr[i], arr[t] = arr[t], arr[i]
+            arr[i], arr[t] = arr[t], arr[i] # then swap
             swap += 1
     return swap
 
