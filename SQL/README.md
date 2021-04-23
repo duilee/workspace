@@ -393,3 +393,8 @@ FROM(SELECT d.name AS 'Department'
      FROM Employee e  
      INNER JOIN Department d ON e.DepartmentId = d.Id) t  
 WHERE ranks <= 3  
+
+> **Exclude NULL value when querying**
+SELECT name  
+FROM employees  
+WHERE id NOT IN (SELECT managerId FROM employees WHERE managerId IS NOT NULL)  
