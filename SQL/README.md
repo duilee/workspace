@@ -409,7 +409,7 @@ CREATE TABLE users_roles (
   PRIMARY KEY(userId, roleId)  
 );  
 
-> **Actively use WITH**
+> **Actively use WITH** https://www.testdome.com/questions/sql/regional-sales-comparison  
 WITH salesavg AS(  
 SELECT r.name  
      , (CASE WHEN SUM(s.amount) IS NULL THEN 0  
