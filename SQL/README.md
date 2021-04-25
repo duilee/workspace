@@ -408,3 +408,21 @@ CREATE TABLE users_roles (
   FOREIGN KEY(roleId) REFERENCES roles(id),  
   PRIMARY KEY(userId, roleId)  
 );  
+
+> **Actively use WITH**
+WITH salesavg AS(  
+SELECT r.name  
+     , (CASE WHEN SUM(s.amount) IS NULL THEN 0  
+        ELSE SUM(s.amount) / COUNT(DISTINCT e.id)  
+        END) AS 'average'  
+FROM regions r  
+LEFT JOIN states ON states.regionID = r.id  
+LEFT JOIN employees e ON e.stateId = states.id  
+LEFT JOIN sales s ON s.employeeId = e.id  
+GROUP BY r.id, r.name)  
+
+SELECT name  
+     , average  
+     , (SELECT MAX(average) FROM salesavg) - average AS 'difference'  
+FROM salesavg  
+ 
