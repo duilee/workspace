@@ -420,7 +420,6 @@ LEFT JOIN states ON states.regionID = r.id
 LEFT JOIN employees e ON e.stateId = states.id  
 LEFT JOIN sales s ON s.employeeId = e.id  
 GROUP BY r.id, r.name)  
-
 SELECT name  
      , average  
      , (SELECT MAX(average) FROM salesavg) - average AS 'difference'  
