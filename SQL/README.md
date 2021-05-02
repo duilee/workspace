@@ -424,4 +424,9 @@ SELECT name
      , average  
      , (SELECT MAX(average) FROM salesavg) - average AS 'difference'  
 FROM salesavg  
+
+> **MAX automatically returns null if no rows**
+SELECT MAX(salary) AS "SecondHighestSalary"  
+FROM employee  
+WHERE Salary != (SELECT MAX(salary) FROM employee)  
  
