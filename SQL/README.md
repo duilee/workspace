@@ -430,3 +430,12 @@ SELECT MAX(salary) AS "SecondHighestSalary"
 FROM employee  
 WHERE Salary != (SELECT MAX(salary) FROM employee)  
  
+> **WITH RECURSIVE can make iterated rows, use with UNION ALL and specified column name**
+WITH RECURSIVE TIME AS(  
+SELECT 0 AS h  
+    UNION ALL  
+    SELECT h+1 FROM TIME WHERE h < 23)  
+SELECT h, COUNT(HOUR(DATETIME)) AS 'COUNT'  
+FROM TIME LEFT OUTER JOIN animal_outs  
+ON h = HOUR(DATETIME)  
+GROUP BY h  
