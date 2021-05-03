@@ -430,7 +430,7 @@ SELECT MAX(salary) AS "SecondHighestSalary"
 FROM employee  
 WHERE Salary != (SELECT MAX(salary) FROM employee)  
  
-> **WITH RECURSIVE can make iterated rows, use with UNION ALL and specified column name**
+> **WITH RECURSIVE can make iterated rows, use with UNION ALL and specified column name**  
 WITH RECURSIVE TIME AS(  
 SELECT 0 AS h  
     UNION ALL  
