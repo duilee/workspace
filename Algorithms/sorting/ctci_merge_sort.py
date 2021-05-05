@@ -28,11 +28,11 @@ def mergesort2(A):
                 k += 1
                 count += n1-i
 
-        while i < n1:
+        while i < n1: # fill in the rest if left
             A[k] = L[i]
             i+=1
             k+=1
-        while j < n2:
+        while j < n2: # fill in the rest if left
             A[k] = R[j]
             j+=1
             k+=1
