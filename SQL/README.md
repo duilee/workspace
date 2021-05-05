@@ -393,3 +393,49 @@ FROM(SELECT d.name AS 'Department'
      FROM Employee e  
      INNER JOIN Department d ON e.DepartmentId = d.Id) t  
 WHERE ranks <= 3  
+
+> **Exclude NULL value when querying**
+SELECT name  
+FROM employees  
+WHERE id NOT IN (SELECT managerId FROM employees WHERE managerId IS NOT NULL)  
+
+> **USING CREATE TABLE**
+-- Modify only this SQLite create table statement and nothing else  
+CREATE TABLE users_roles (  
+  userId INTEGER NOT NULL,  
+  roleId INTEGER NOT NULL,  
+  FOREIGN KEY(userId) REFERENCES users(id),  
+  FOREIGN KEY(roleId) REFERENCES roles(id),  
+  PRIMARY KEY(userId, roleId)  
+);  
+
+> **Actively use WITH** https://www.testdome.com/questions/sql/regional-sales-comparison  
+WITH salesavg AS(  
+SELECT r.name  
+     , (CASE WHEN SUM(s.amount) IS NULL THEN 0  
+        ELSE SUM(s.amount) / COUNT(DISTINCT e.id)  
+        END) AS 'average'  
+FROM regions r  
+LEFT JOIN states ON states.regionID = r.id  
+LEFT JOIN employees e ON e.stateId = states.id  
+LEFT JOIN sales s ON s.employeeId = e.id  
+GROUP BY r.id, r.name)  
+SELECT name  
+     , average  
+     , (SELECT MAX(average) FROM salesavg) - average AS 'difference'  
+FROM salesavg  
+
+> **MAX automatically returns null if no rows**
+SELECT MAX(salary) AS "SecondHighestSalary"  
+FROM employee  
+WHERE Salary != (SELECT MAX(salary) FROM employee)  
+ 
+> **WITH RECURSIVE can make iterated rows, use with UNION ALL and specified column name**  
+WITH RECURSIVE TIME AS(  
+SELECT 0 AS h  
+    UNION ALL  
+    SELECT h+1 FROM TIME WHERE h < 23)  
+SELECT h, COUNT(HOUR(DATETIME)) AS 'COUNT'  
+FROM TIME LEFT OUTER JOIN animal_outs  
+ON h = HOUR(DATETIME)  
+GROUP BY h  
