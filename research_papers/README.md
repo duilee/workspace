@@ -24,3 +24,17 @@
 - Bert4Rec 
   * blog post [link](https://22-22.tistory.com/78)
   * TL;DR used bert model to make recommendations
+
+- DeepFM: A Factorization-Machine based Neural Network for CTR Prediction
+  * Review video [link](https://www.youtube.com/watch?v=zxXRGhSQ1f4)
+  * blog post [link](https://leehyejin91.github.io/post-deepfm/)
+
+- LAMBDANETWORKS: MODELING LONG-RANGE INTERACTIONS WITHOUT ATTENTION
+  * blog post [link](https://medium.com/analytics-vidhya/lambdanetworks-modeling-long-range-interactions-without-attention-337771f42b6f)
+
+- Are Transformers Universal Approximators of Sequence-to-Sequence functions?
+  * Review video [link](https://www.youtube.com/watch?v=sfy6qJIRyvg)
+
+- Watch out! Motion is Blurring the Vision of Your Deep Neural Networks
+
+- In-Domain GAN Inversion for Real Image Editing
